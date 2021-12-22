@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "irl.narupaimd.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\htc-vive-pro-eye-master\\htc-vive-pro-eye-master\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "Narupa iMD [Testing]"
+        }
+      }
+    }
+  ]
+}

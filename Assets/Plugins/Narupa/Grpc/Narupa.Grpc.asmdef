@@ -1,0 +1,23 @@
+{
+    "name": "Narupa.Grpc",
+    "references": [
+        "Narupa.Core",
+        "Narupa.Frame"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "Grpc.Core.Api.dll",
+        "Grpc.Core.dll",
+        "Google.Protobuf.dll",
+        "System.Threading.Channels.dll",
+        "Narupa.Protocol.dll",
+        "System.Threading.Tasks.Extensions.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

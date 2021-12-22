@@ -1,0 +1,21 @@
+{
+    "name": "NarupaIMD.Editor",
+    "references": [
+        "NarupaXR",
+        "Narupa.Grpc",
+        "Narupa.Core",
+        "Narupa.Frame",
+        "Narupa.Visualisation"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
