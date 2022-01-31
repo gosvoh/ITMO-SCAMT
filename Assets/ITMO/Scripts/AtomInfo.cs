@@ -1,24 +1,28 @@
-﻿using Tobii.G2OM;
+﻿using NarupaXR.Interaction;
 using UnityEngine;
 
-public class AtomInfo : MonoBehaviour, IGazeFocusable
+namespace ITMO.Scripts
 {
-    public int Index { get; set; }
-
-    public GameObject Obj { get; set; }
-
-    public void GazeFocusChanged(bool hasFocus)
+    [RequireComponent(typeof(Collider))]
+    public class AtomInfo : MonoBehaviour, IInfo
     {
-        if (!hasFocus || Reference.EyeLogger == null) return;
-            
-        // var data = TobiiXR.Advanced.LatestData;
-        if (Reference.ID == Index) return;
-        Reference.EyeLogger.AddInfo($"Position: {Obj.transform.position}, ID: {Index + 1}");
-        Reference.ID = Index;
-        Reference.counter++;
+        public int Index { get; set; }
+        public GameObject Obj { get; set; }
 
-        // Reference.Logger.AddInfo(
-        //     $"Position: {gameObject.transform.position}, ID: {atomID}, left pupil: {data.Left.PupilDiameter}, " +
-        //     $"right pupil: {data.Right.PupilDiameter}");
+        private GameObject cameraObj;
+
+        private void Awake()
+        {
+            cameraObj = GameObject.Find("Camera");
+        }
+
+        private void Update()
+        {
+            var thisPos = transform.position;
+            var camPos = cameraObj.transform.position;
+            if (Vector3.Distance(thisPos, camPos) < EyeInteraction.VisibilityRadius) return;
+            EyeInteraction.Spheres.Remove(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

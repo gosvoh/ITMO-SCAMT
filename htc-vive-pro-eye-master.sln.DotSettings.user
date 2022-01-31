@@ -2,4 +2,5 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Program Files\Unity\Hub\Editor\2019.3.0f6\Editor\Data\Managed\UnityEditor.dll" /&gt;&#xD;
   &lt;Assembly Path="D:\htc-vive-pro-eye-master\htc-vive-pro-eye-master\Assets\Plugins\Narupa\Dependencies\Narupa.Protocol.dll" /&gt;&#xD;
+  &lt;Assembly Path="D:\htc-vive-pro-eye-master\htc-vive-pro-eye-master\Assets\Plugins\Narupa\Dependencies\Essd.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

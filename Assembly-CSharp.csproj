@@ -66,8 +66,8 @@
      <Compile Include="Assets\ITMO\Scripts\Difficulty.cs" />
      <Compile Include="Assets\ITMO\Scripts\EyeInteraction.cs" />
      <Compile Include="Assets\ITMO\Scripts\EyeTracker.cs" />
-     <Compile Include="Assets\ITMO\Scripts\EyesLogger.cs" />
      <Compile Include="Assets\ITMO\Scripts\FaceTracker.cs" />
+     <Compile Include="Assets\ITMO\Scripts\Info.cs" />
      <Compile Include="Assets\ITMO\Scripts\Level.cs" />
      <Compile Include="Assets\ITMO\Scripts\Logger.cs" />
      <Compile Include="Assets\ITMO\Scripts\Reference.cs" />
@@ -75,7 +75,6 @@
      <Compile Include="Assets\ITMO\Scripts\Server.cs" />
      <Compile Include="Assets\ITMO\Scripts\TaskPanel.cs" />
      <Compile Include="Assets\ITMO\Scripts\WallInfo.cs" />
-     <Compile Include="Assets\Samples\Tobii XR SDK\3.0.1\Getting Started\Scripts\HighlightAtGaze.cs" />
      <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye.cs" />
      <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeData.cs" />
      <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeDataType_v1.cs" />
@@ -111,138 +110,60 @@
      <Compile Include="Assets\ViveSR\Scripts\SRanipal_API.cs" />
      <Compile Include="Assets\ViveSR\Scripts\SRanipal_Enums.cs" />
      <None Include="Assets\StreamingAssets\Molecules\3_06.txt" />
-     <None Include="Assets\StreamingAssets\Server\IPython\testing\plugin\README.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\7294.46e9d2dfa68082780e97.js.LICENSE.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-     <None Include="Assets\StreamingAssets\Server\gevent\tests\tests_that_dont_monkeypatch.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_10.txt" />
      <None Include="Assets\StreamingAssets\Molecules\3_08.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_06.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isopub.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\s5defs.txt" />
      <None Include="Assets\StreamingAssets\Molecules\4_14.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\4008.d04a6dae56794e5c0c01.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\911.0c08f040896753efc653.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isoamsa.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isomopf-wide.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isogrk3.txt" />
-     <None Include="Assets\StreamingAssets\Server\IPython\testing\plugin\test_example.txt" />
      <None Include="Assets\StreamingAssets\Molecules\3_10.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isoamsb.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_04.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\xhtml1-symbol.txt" />
      <None Include="Assets\ViveSR\Shaders\Unlit-Alpha2Gray.shader" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\1902.84e773fc133a804e6fdf.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\importlib_metadata-4.8.1-py3.8.egg-info\top_level.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isomfrk-wide.txt" />
-     <None Include="Assets\StreamingAssets\Server\sphinx\templates\epub3\container.xml" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\mmlextra.txt" />
      <None Include="Assets\StreamingAssets\Molecules\4_06.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\writers\html5_polyglot\template.txt" />
      <None Include="Assets\StreamingAssets\Molecules\2_14.txt" />
-     <None Include="Assets\StreamingAssets\Server\IPython\testing\plugin\test_exampleip.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isonum.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_02.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_12.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isobox.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isocyr2.txt" />
-     <None Include="Assets\StreamingAssets\Server\notebook\bundler\tests\resources\subdir\test_file.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_20.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\README.txt" />
      <None Include="Assets\StreamingAssets\Molecules\4_04.txt" />
-     <None Include="Assets\StreamingAssets\Server\lib2to3\PatternGrammar.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isogrk2.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\StreamingAssets\Molecules\3_04.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isogrk4.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\1036.f2d455e7057498f51450.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\gevent\tests\hosts_file.txt" />
-     <None Include="Assets\StreamingAssets\Server\gevent-21.8.0-py3.8.egg-info\entry_points.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_14.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\jlab_core.075245c92eb560303156.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isogrk4-wide.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isodia.txt" />
-     <None Include="Assets\StreamingAssets\Server\jedi\third_party\django-stubs\LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\gevent-21.8.0-py3.8.egg-info\top_level.txt" />
      <None Include="Assets\StreamingAssets\Molecules\4_08.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\labextensions\@jupyter-widgets\jupyterlab-manager\static\95.b5a5ff10000a6051fa99.js.LICENSE.txt" />
      <None Include="Assets\StreamingAssets\Molecules\2_02.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\9473.f6adb1fcd9ac2f6ab565.js.LICENSE.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\StreamingAssets\Molecules\4_12.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\mmlalias.txt" />
-     <None Include="Assets\StreamingAssets\Server\nbconvert-6.1.0-py3.8.egg-info\top_level.txt" />
-     <None Include="Assets\StreamingAssets\Server\gevent\tests\tests_that_dont_do_leakchecks.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
-     <None Include="Assets\StreamingAssets\Server\docutils\writers\s5_html\themes\README.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\mmlextra-wide.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isomscr-wide.txt" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isoamso.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isogrk1.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\807.19c29345bd81fb8caca3.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\1281.6c7687aa3b273aeb96c9.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\cryptography-3.4.8-py3.8.egg-info\top_level.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\xhtml1-special.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isomfrk.txt" />
      <None Include="Assets\ViveSR\Shaders\DartBoardShader.shader" />
-     <None Include="Assets\StreamingAssets\Server\gevent\tests\tests_that_dont_use_resolver.txt" />
-     <None Include="Assets\StreamingAssets\Server\nbconvert-6.1.0-py3.8.egg-info\entry_points.txt" />
-     <None Include="Assets\StreamingAssets\Server\jsonschema-3.2.0-py3.8.egg-info\entry_points.txt" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_16.txt" />
      <None Include="Assets\StreamingAssets\Molecules\3_14.txt" />
      <None Include="Assets\StreamingAssets\Molecules\4_02.txt" />
      <None Include="Assets\StreamingAssets\Molecules\2_10.txt" />
-     <None Include="Assets\StreamingAssets\Server\lib2to3\Grammar.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\writers\html4css1\template.txt" />
      <None Include="Assets\StreamingAssets\Molecules\2_12.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isotech.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_08.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isolat2.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-     <None Include="Assets\StreamingAssets\Server\nbconvert\tests\exporter_entrypoint\eptest-0.1.dist-info\entry_points.txt" />
      <None Include="Assets\StreamingAssets\Molecules\3_12.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\writers\pep_html\template.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\lab\static\3935.e00facce2e55a4af6e62.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isocyr1.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isoamsc.txt" />
-     <None Include="Assets\StreamingAssets\Server\notebook\static\robots.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isoamsn.txt" />
-     <None Include="Assets\StreamingAssets\Server\sphinx\themes\basic\opensearch.xml" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-     <None Include="Assets\StreamingAssets\Server\notebook\bundler\tests\resources\another_subdir\test_file.txt" />
      <None Include="Assets\StreamingAssets\Molecules\4_10.txt" />
      <None Include="Assets\StreamingAssets\Molecules\1_18.txt" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\StreamingAssets\Molecules\2_08.txt" />
      <None Include="Assets\StreamingAssets\Molecules\3_02.txt" />
-     <None Include="Assets\StreamingAssets\Server\share\jupyter\labextensions\@jupyter-widgets\jupyterlab-manager\static\638.f3e5e34a28f3334d4f08.js.LICENSE.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\xhtml1-lat1.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isolat1.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isoamsr.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isomscr.txt" />
      <None Include="Assets\StreamingAssets\Molecules\2_06.txt" />
      <None Include="Assets\StreamingAssets\Molecules\2_04.txt" />
-     <None Include="Assets\StreamingAssets\Server\docutils\parsers\rst\include\isomopf.txt" />
-     <None Include="Assets\StreamingAssets\Server\IPython\testing\plugin\test_combo.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
-     <None Include="Assets\StreamingAssets\Server\jsonschema-3.2.0-py3.8.egg-info\top_level.txt" />
- <Reference Include="Unity.XR.Management">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Subsystem.Registration">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
- </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Leopotam.Ecs">
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Leopotam.Ecs.dll</HintPath>
  </Reference>
  <Reference Include="CodeCoverageTools.Editor">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/CodeCoverageTools.Editor.dll</HintPath>
@@ -256,12 +177,6 @@
  <Reference Include="Unity.Postprocessing.Editor">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.XR.LegacyInputHelpers">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
- </Reference>
- <Reference Include="Unity.XR.Management.Editor">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
@@ -271,17 +186,8 @@
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.SpatialTracking">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.SpatialTracking">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
- </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.XR.LegacyInputHelpers">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -865,29 +771,13 @@
       <Project>{67AB1A11-9390-DBC8-64C6-95F9F803C8C4}</Project>
       <Name>NarupaIMD.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="TobiiXREditor.csproj">
-      <Project>{57E30347-8D27-80E8-568C-C8D7997C12DF}</Project>
-      <Name>TobiiXREditor</Name>
-    </ProjectReference>
     <ProjectReference Include="Narupa.Frontend.csproj">
       <Project>{4B56D58F-411F-1ED6-E06E-DAEBC0E013D3}</Project>
       <Name>Narupa.Frontend</Name>
     </ProjectReference>
-    <ProjectReference Include="TobiiXRSDK.csproj">
-      <Project>{024AE58B-475E-DA25-40A5-FA4DD0D246EF}</Project>
-      <Name>TobiiXRSDK</Name>
-    </ProjectReference>
     <ProjectReference Include="Narupa.Visualisation.csproj">
       <Project>{B5B631A2-CE48-8EE5-6BC5-902236429849}</Project>
       <Name>Narupa.Visualisation</Name>
-    </ProjectReference>
-    <ProjectReference Include="GazeModifierEditor.csproj">
-      <Project>{A4D603C0-8EFD-C0E7-7113-8B2F945B1056}</Project>
-      <Name>GazeModifierEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="TobiiXRCore.csproj">
-      <Project>{3E213562-4D9C-C827-08EC-7DF1C3301D38}</Project>
-      <Name>TobiiXRCore</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Actions.csproj">
       <Project>{5A9A2C15-6ACD-C332-59DD-74828E9DAAA0}</Project>
@@ -896,14 +786,6 @@
     <ProjectReference Include="NarupaXR.csproj">
       <Project>{096C799B-25F6-0C38-7DE8-1A1D3D12724C}</Project>
       <Name>NarupaXR</Name>
-    </ProjectReference>
-    <ProjectReference Include="TobiiXRInternalEditor.csproj">
-      <Project>{74EA15BF-D7C0-9A4D-1B14-43ADD03DBD7C}</Project>
-      <Name>TobiiXRInternalEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="TobiiXRG2OM.csproj">
-      <Project>{ADD80C30-3620-F987-80B9-C6B4EFAF9F74}</Project>
-      <Name>TobiiXRG2OM</Name>
     </ProjectReference>
     <ProjectReference Include="Narupa.Core.csproj">
       <Project>{B7BF4DC3-0957-24FD-8A55-BC673C5B10FD}</Project>
@@ -916,10 +798,6 @@
     <ProjectReference Include="SteamVR_Input_Editor.csproj">
       <Project>{8868EDC4-63B9-6DB2-C659-41AEA3497FD6}</Project>
       <Name>SteamVR_Input_Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="TobiiXRDevTools.csproj">
-      <Project>{2348452D-F3C6-85E7-CEC0-5A22E2EDDFF9}</Project>
-      <Name>TobiiXRDevTools</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Editor.csproj">
       <Project>{52934A39-46C4-361E-241A-57B428D6D286}</Project>

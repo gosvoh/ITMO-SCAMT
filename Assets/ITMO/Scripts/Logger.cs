@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace ITMO.Scripts
 {
@@ -9,19 +10,21 @@ namespace ITMO.Scripts
         private readonly string fileName;
         private readonly List<string> list;
 
-        public Logger(bool mouth)
+        public Logger(params string[] postfixes)
         {
             list = new List<string>();
             const string filePath = ".\\logs\\";
             if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
-            if (mouth) fileName = filePath + DateTime.Now.ToString("dd_MM_yy_HH_mm_ss") + "_mouth.log";
-            else fileName = filePath + DateTime.Now.ToString("dd_MM_yy_HH_mm_ss") + ".log";
+            var sb = new StringBuilder(filePath + DateTime.Now.ToString("dd_MM_yy_HH_mm_ss"));
+            foreach (var s in postfixes) sb.Append("_").Append(s);
+            fileName = sb + ".csv";
         }
 
         public void AddInfo(string infoToLog)
         {
             var currentTime = DateTime.Now.ToString("HH:mm:ss.fff");
-            list.Add("[" + currentTime + "]: " + infoToLog);
+            // list.Add("[" + currentTime + "]: " + infoToLog);
+            list.Add(infoToLog);
         }
 
         public void WriteInfo()
@@ -29,7 +32,5 @@ namespace ITMO.Scripts
             File.AppendAllLines(fileName, list);
             list.Clear();
         }
-
-        public void Close() => WriteInfo();
     }
 }

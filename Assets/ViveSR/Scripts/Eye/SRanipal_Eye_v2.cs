@@ -51,8 +51,8 @@ namespace ViveSR
                     else LastUpdateFrame = Time.frameCount;
                     LastUpdateResult = SRanipal_Eye_API.GetEyeData_v2(ref EyeData_);
 
-                    //Debug.Log("[EYE V2] LeftWide = " + EyeData_.verbose_data.left.eye_wide);
-                    //Debug.Log("[EYE V2] RightWide = " + EyeData_.verbose_data.right.eye_wide);
+                    // Debug.Log("[EYE V2] LeftWide = " + EyeData_.expression_data.left.eye_wide);
+                    // Debug.Log("[EYE V2] RightWide = " + EyeData_.expression_data.right.eye_wide);
 
                     return LastUpdateResult == Error.WORK;
                 }
@@ -154,6 +154,8 @@ namespace ViveSR
 
                     Weightings[EyeShape_v2.Eye_Left_Squeeze] =  EyeData_.expression_data.left.eye_squeeze;
                     Weightings[EyeShape_v2.Eye_Right_Squeeze] = EyeData_.expression_data.right.eye_squeeze;
+                    
+                    
 
                     if (valid[(int)EyeIndex.LEFT] && valid[(int)EyeIndex.RIGHT])
                     {
@@ -300,6 +302,7 @@ namespace ViveSR
                             {
                                 origin = eyesData[(int)gazeIndex].gaze_origin_mm * 0.001f;
                                 direction = eyesData[(int)gazeIndex].gaze_direction_normalized;
+                                origin.x *= -1;
                                 direction.x *= -1;
                             }
                         }
@@ -539,6 +542,29 @@ namespace ViveSR
                     return GetPupilPosition(eye, out postion, EyeData_);
                 }
 
+                public static bool GetPupilDiameter(EyeIndex eye, out float pupilDiameter, EyeData_v2 eye_data)
+                {
+                    bool valid = false;
+                    if (SRanipal_Eye_Framework.Status == SRanipal_Eye_Framework.FrameworkStatus.WORKING)
+                    {
+                        SingleEyeData eyeData = eye == EyeIndex.LEFT ? eye_data.verbose_data.left : eye_data.verbose_data.right;
+                        valid = eyeData.GetValidity(SingleEyeDataValidity.SINGLE_EYE_DATA_PUPIL_POSITION_IN_SENSOR_AREA_VALIDITY);
+                        pupilDiameter = valid ? pupilDiameter = eyeData.pupil_diameter_mm : 0;
+                    }
+                    else
+                    {
+                        // If not support eye tracking, set default in middle.
+                        pupilDiameter = 0f;
+                        valid = true;
+                    }
+                    return valid;
+                }
+
+                public static bool GetPupilDiameter(EyeIndex eye, out float pupilDiameter)
+                {
+                    UpdateData();
+                    return GetPupilDiameter(eye, out pupilDiameter, EyeData_);
+                }
 
                 /// <summary>
                 /// Launches anipal's Eye Calibration feature (an overlay program).

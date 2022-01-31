@@ -4,13 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-
-#if UNITY_2017_2_OR_NEWER
-    using UnityEngine.XR;
-#else
-using XRSettings = UnityEngine.VR.VRSettings;
-using XRDevice = UnityEngine.VR.VRDevice;
-#endif
+using UnityEngine.XR;
 
 namespace Valve.VR
 {
@@ -20,6 +14,7 @@ namespace Valve.VR
         public static bool forcingInitialization = false;
 
         private static SteamVR_Behaviour _instance;
+
         public static SteamVR_Behaviour instance
         {
             get
@@ -37,12 +32,12 @@ namespace Valve.VR
 
         public bool doNotDestroy = true;
 
-        [HideInInspector]
-        public SteamVR_Render steamvr_render;
+        [HideInInspector] public SteamVR_Render steamvr_render;
 
         internal static bool isPlaying = false;
 
         private static bool initializing = false;
+
         public static void Initialize(bool forceUnityVRToOpenVR = false)
         {
             if (_instance == null && initializing == false)
@@ -194,11 +189,13 @@ namespace Valve.VR
             Camera.onPreCull += OnCameraPreCull;
             SteamVR_Events.System(EVREventType.VREvent_Quit).Listen(OnQuit);
         }
+
         protected void OnDisable()
         {
             Camera.onPreCull -= OnCameraPreCull;
             SteamVR_Events.System(EVREventType.VREvent_Quit).Remove(OnQuit);
         }
+
         protected void OnCameraPreCull(Camera cam)
         {
             if (!cam.stereoEnabled)
@@ -209,6 +206,7 @@ namespace Valve.VR
 #endif
 
         protected static int lastFrameCount = -1;
+
         protected void PreCull()
         {
             // Only update poses on the first camera per frame.
@@ -240,7 +238,7 @@ namespace Valve.VR
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
-		    Application.Quit();
+            Application.Quit();
 #endif
         }
     }

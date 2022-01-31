@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEngine;
-using ViveSR.anipal.Lip;
 
 namespace ITMO.Scripts
 {
@@ -17,8 +14,11 @@ namespace ITMO.Scripts
 
         public static LinkedListNode<string> CurrentLevel;
 
-        private void Awake() => GetFiles();
-        
+        private void Awake()
+        {
+            GetFiles();
+        }
+
         private static void GetFiles()
         {
             _levels = new Dictionary<string, string>();
@@ -46,14 +46,20 @@ namespace ITMO.Scripts
                 if (!Levels.ContainsKey(dif)) Levels.Add(dif, new LinkedList<string>());
                 Levels[dif].AddLast(s);
             }
-            
+
             LevelList = new LinkedList<string>(_levels.Keys);
             CurrentLevelName = LevelList.First.Value;
             CurrentLevel = LevelList.First;
         }
 
-        public static string GetLevel(string lvl) => _levels[lvl];
+        public static string GetLevelPath(string lvl)
+        {
+            return _levels[lvl];
+        }
 
-        public static string GetLevelTask(string lvl) => _tasks[lvl];
+        public static string GetLevelTask(string lvl)
+        {
+            return _tasks[lvl];
+        }
     }
 }

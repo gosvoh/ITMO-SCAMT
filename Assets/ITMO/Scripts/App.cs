@@ -1,29 +1,31 @@
-﻿using System;
-using NarupaIMD;
-using NarupaXR;
+﻿using NarupaXR;
 using UnityEngine;
 
 namespace ITMO.Scripts
 {
     public class App : MonoBehaviour
     {
-
         [SerializeField] private GameObject taskPanel;
-        
+        [SerializeField] private Server server;
+
         public void Quit() => GetComponent<NarupaXRPrototype>().Quit();
 
+        private void Awake()
+        {
+            Reference.AppInstance = this;
+        }
 
         public void StartSim()
         {
+            server.Send(Level.GetLevelPath(Level.CurrentLevel.Value));
             Level.CurrentLevel = Level.LevelList.First;
-            GetComponent<Server>().Send(Level.GetLevel(Level.CurrentLevel.Value));
             Level.CurrentLevelName = Level.CurrentLevel.Value;
-            GetComponent<Server>().Connect();
+            server.Connect();
         }
 
         public void Disconnect()
         {
-            GetComponent<Server>().Disconnect();
+            server.Disconnect();
             taskPanel.SetActive(false);
         }
 

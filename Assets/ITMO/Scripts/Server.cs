@@ -1,40 +1,78 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
+using System.Net.Sockets;
+using System.Text;
 using System.Threading;
 using ITMO.Scripts.SRanipal;
 using NarupaXR;
+using NarupaXR.Interaction;
 using UnityEngine;
+using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
 
 namespace ITMO.Scripts
 {
     public class Server : MonoBehaviour
     {
-        public static bool ServerConnected { get; private set; }
-
-        private NarupaXRPrototype simulation;
+        [SerializeField] private NarupaXRPrototype simulation;
 
         private Process serverProcess;
 
-        private void RunServer()
+        public static bool ServerConnected { get; private set; }
+        public static readonly UnityEvent SendEvent = new UnityEvent();
+
+        public void Start()
+        {
+            if (!TestTcpConnection())
+                RunServerProcess();
+        }
+
+        public void OnApplicationQuit()
+        {
+            Disconnect();
+            if (serverProcess == null) return;
+            var buffer = Encoding.UTF8.GetBytes("q");
+            var client = new TcpClient("localhost", 7777);
+            client.GetStream().Write(buffer, 0, buffer.Length);
+            client.Close();
+            Thread.Sleep(1000);
+            try
+            {
+                serverProcess.Kill();
+            }
+            catch (InvalidOperationException)
+            {
+            }
+        }
+
+        private void RunServerProcess()
         {
             serverProcess = new Process
             {
                 StartInfo =
                 {
                     UseShellExecute = false,
-                    FileName = Application.streamingAssetsPath + "\\Server\\run.exe",
+                    FileName = "cmd.exe",
                     CreateNoWindow = true,
-                    Arguments = "-w",
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true
+                    RedirectStandardInput = true
                 }
             };
 
             try
             {
                 serverProcess.Start();
+
+                using (var si = serverProcess.StandardInput)
+                {
+                    if (!si.BaseStream.CanWrite) return;
+#if UNITY_EDITOR
+                    const string condaPath = "D:\\htc-vive-pro-eye-master\\Miniconda3";
+#else
+                    const string condaPath = ".\\Miniconda3";
+#endif
+                    si.WriteLine($"call {condaPath}\\Scripts\\activate.bat");
+                    si.WriteLine($"python {condaPath}\\Scripts\\run.py");
+                }
             }
             catch (Exception e)
             {
@@ -43,57 +81,54 @@ namespace ITMO.Scripts
             }
         }
 
-        public void Send(string line)
+        private static bool TestTcpConnection(string host = "127.0.0.1", int port = 7777,
+            int timeout = 3000)
         {
-            serverProcess.StandardInput.WriteLine(line);
-            Read(serverProcess.StandardOutput);
-            if (Reference.EyeLogger != null)
+            var client = new TcpClient();
+            try
             {
-                Reference.EyeLogger.AddInfo(
-                    $"Changed gaze - {Reference.counter}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}");
-                Reference.EyeLogger.WriteInfo();
+                var result = client.BeginConnect(host, port, null, null);
+                var success = result.AsyncWaitHandle.WaitOne(timeout);
+                if (success) client.EndConnect(result);
+                client.Close();
+                return success;
             }
-            if (Reference.FaceLogger != null) Reference.FaceLogger.WriteInfo();
-            Reference.counter = 0;
-            Reference.Stopwatch.Restart();
+            catch (SocketException)
+            {
+                return false;
+            }
         }
-
-        public void SendAndConnect(string line)
-        {
-            Send(line);
-            Connect();
-        }
-
-        public void Start()
-        {
-            RunServer();
-            simulation = GetComponent<NarupaXRPrototype>();
-        }
-
-        private static void Read(StreamReader reader)
-        {
-            // new Thread(() =>
-            // {
-            //     while (true)
-            //     {
-            //         string current;
-            //         while ((current = reader.ReadLine()) != null)
-            //             Debug.LogWarning(current);
-            //     }
-            // }).Start();
-        }
-
 
         public void Connect()
         {
             if (ServerConnected) return;
             simulation.AutoConnect();
             ServerConnected = true;
-            Reference.EyeLogger = new Logger(false);
-            Reference.FaceLogger = new Logger(true);
-            Reference.counter = 0;
+            EyeInteraction.Logger = new Logger();
+            EyeTracker.Logger = new Logger("_eyeTracker");
+            FaceTracker.Logger = new Logger("_faceTracker");
+            EyeInteraction.EyeGazeChangedCounter = 0;
             Reference.Stopwatch.Restart();
         }
+
+        public void Send(string line)
+        {
+            Reference.Stopwatch.Stop();
+            SendEvent.Invoke();
+            var client = new TcpClient("localhost", 7777);
+            var buffer = Encoding.UTF8.GetBytes(line);
+            client.GetStream().Write(buffer, 0, buffer.Length);
+            client.Close();
+            Reference.Stopwatch.Restart();
+        }
+
+        // private Task<string> Read()
+        // {
+        //     throw new NotImplementedException();
+        //     // var buffer = new byte[256];
+        //     // await client.GetStream().ReadAsync(buffer, 0, buffer.Length);
+        //     // return Encoding.UTF8.GetString(buffer);
+        // }
 
         public void Disconnect()
         {
@@ -101,16 +136,7 @@ namespace ITMO.Scripts
             simulation.Disconnect();
             ServerConnected = false;
             Reference.Stopwatch.Stop();
-            Reference.EyeLogger.AddInfo(
-                $"Changed gaze - {Reference.counter}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}");
-            Reference.EyeLogger.Close();
-            Reference.FaceLogger.Close();
-        }
-
-        public void OnApplicationQuit()
-        {
-            Disconnect();
-            serverProcess.Kill();
+            SendEvent.Invoke();
         }
     }
 }

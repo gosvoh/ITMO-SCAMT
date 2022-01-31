@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using ITMO.Scripts;
 using UnityEngine;
 using Logger = ITMO.Scripts.Logger;
 
-public class Reference : MonoBehaviour
+namespace ITMO.Scripts
 {
-    public static int counter;
-    public static int ID = -1;
-    public static Logger EyeLogger;
-    public static Logger FaceLogger;
-    public static Stopwatch Stopwatch = new Stopwatch();
+    public static class Reference
+    {
+        public static int ID = -1;
+        public static Stopwatch Stopwatch = new Stopwatch();
+        public static App AppInstance { get; set; }
+    }
 }

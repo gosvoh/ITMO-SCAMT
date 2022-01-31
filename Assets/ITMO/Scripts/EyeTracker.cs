@@ -1,16 +1,63 @@
-﻿using Tobii.XR;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
+using ViveSR.anipal.Eye;
 
 namespace ITMO.Scripts
 {
-    [DefaultExecutionOrder(-10)]
     public class EyeTracker : MonoBehaviour
     {
-        public TobiiXR_Settings settings;
-        private void Awake()
+        public static Logger Logger;
+
+        private bool log;
+        private int counter = -1;
+
+        private static Dictionary<EyeShape_v2, float> _shapes;
+
+        private void Start()
         {
-            // settings = new TobiiXR_Settings(true);
-            TobiiXR.Start(settings);
+            if (!SRanipal_Eye_Framework.Instance.EnableEye) enabled = false;
+            Server.SendEvent.AddListener(EventHandler);
+        }
+
+        private void FixedUpdate()
+        {
+            if (!Server.ServerConnected || Logger == null) return;
+
+            counter++;
+            if (counter % 10 != 0) return;
+
+            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
+                SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
+
+            SRanipal_Eye_v2.GetEyeWeightings(out _shapes);
+            
+            var sb = new StringBuilder();
+            if (!log)
+            {
+                sb.Append("timestamp|");
+                foreach (var value in Enum.GetNames(typeof(EyeShape_v2))) sb.Append($"{value}|");
+                sb.Append("l_pupil_diameter|r_pupil_diameter");
+                Logger.AddInfo(sb.ToString());
+                sb.Clear();
+                log = true;
+            }
+            sb.Append(DateTime.Now.ToString("HH:mm:ss.fff")).Append("|");
+            foreach (var value in _shapes.Values) sb.Append($"{value}|");
+            SRanipal_Eye_v2.GetPupilDiameter(EyeIndex.LEFT, out var lDiam);
+            SRanipal_Eye_v2.GetPupilDiameter(EyeIndex.RIGHT, out var rDiam);
+            sb.Append($"{lDiam}|{rDiam}");
+            Logger.AddInfo(sb.ToString());
+            Logger.WriteInfo();
+        }
+
+        private static void EventHandler()
+        {
+            if (Logger == null) return;
+            Logger.AddInfo(
+                $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}");
+            Logger.WriteInfo();
         }
     }
 }

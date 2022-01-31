@@ -8,30 +8,38 @@ using UnityEngine;
 using System.Collections;
 using System.Reflection;
 using Valve.VR;
-
-#if UNITY_2017_2_OR_NEWER
-    using UnityEngine.XR;
-#else
-using XRSettings = UnityEngine.VR.VRSettings;
-using XRDevice = UnityEngine.VR.VRDevice;
-#endif
+using UnityEngine.XR;
 
 namespace Valve.VR
 {
     [RequireComponent(typeof(Camera))]
     public class SteamVR_Camera : MonoBehaviour
     {
-        [SerializeField]
-        private Transform _head;
-        public Transform head { get { return _head; } }
-        public Transform offset { get { return _head; } } // legacy
-        public Transform origin { get { return _head.parent; } }
+        [SerializeField] private Transform _head;
+
+        public Transform head
+        {
+            get { return _head; }
+        }
+
+        public Transform offset
+        {
+            get { return _head; }
+        } // legacy
+
+        public Transform origin
+        {
+            get { return _head.parent; }
+        }
 
         public new Camera camera { get; private set; }
 
-        [SerializeField]
-        private Transform _ears;
-        public Transform ears { get { return _ears; } }
+        [SerializeField] private Transform _ears;
+
+        public Transform ears
+        {
+            get { return _ears; }
+        }
 
         public Ray GetRay()
         {
@@ -50,7 +58,11 @@ namespace Valve.VR
         static public float sceneResolutionScale
         {
             get { return XRSettings.renderScale; }
-            set { if (value == 0) return; XRSettings.renderScale = value; }
+            set
+            {
+                if (value == 0) return;
+                XRSettings.renderScale = value;
+            }
         }
 #endif
 
@@ -133,6 +145,7 @@ namespace Valve.VR
                     var f = entry.Key as FieldInfo;
                     f.SetValue(this, entry.Value);
                 }
+
                 values = null;
             }
             else
@@ -156,7 +169,8 @@ namespace Valve.VR
                 {
                     // Store off values to be restored on new instance
                     values = new Hashtable();
-                    var fields = GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    var fields = GetType()
+                        .GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
                     foreach (var f in fields)
                         if (f.IsPublic || f.IsDefined(typeof(SerializeField), true))
                             values[f] = f.GetValue(this);
@@ -179,7 +193,11 @@ namespace Valve.VR
         const string earsSuffix = " (ears)";
         const string headSuffix = " (head)";
         const string originSuffix = " (origin)";
-        public string baseName { get { return name.EndsWith(eyeSuffix) ? name.Substring(0, name.Length - eyeSuffix.Length) : name; } }
+
+        public string baseName
+        {
+            get { return name.EndsWith(eyeSuffix) ? name.Substring(0, name.Length - eyeSuffix.Length) : name; }
+        }
 
         // Object hierarchy creation to make it easy to parent other objects appropriately,
         // otherwise this gets called on demand at runtime. Remaining initialization is

@@ -1,86 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Castle.Core.Internal;
 using Plugins.Narupa.Core;
 using UnityEngine;
-using ViveSR;
-using ViveSR.anipal;
 using ViveSR.anipal.Lip;
 
 namespace ITMO.Scripts.SRanipal
 {
     public class FaceTracker : MonoBehaviour
     {
-        private Dictionary<LipShape_v2, float> lipWeightings;
-        private Dictionary<LipShape_v2, float> oldLipWeightings;
+        public static Logger Logger;
+
         private int counter = -1;
-
-        public enum FrameworkStatus
-        {
-            STOP,
-            START,
-            WORKING,
-            ERROR
-        }
-
-        public static FrameworkStatus Status { get; protected set; }
+        private Dictionary<LipShape_v2, float> _shapes;
+        private bool log;
 
         private void Start()
         {
-            var result = SRanipal_API.Initial(SRanipal_Lip_v2.ANIPAL_TYPE_LIP_V2, IntPtr.Zero);
-            if (result == Error.WORK)
-            {
-                Debug.Log("[SRanipal] Initial Version 2 Lip : " + result);
-                Status = FrameworkStatus.WORKING;
-            }
-            else
-            {
-                Debug.LogError("[SRanipal] Initial Version 2 Lip : " + result);
-                Status = FrameworkStatus.ERROR;
-            }
+            if (!SRanipal_Lip_Framework.Instance.EnableLip) enabled = false;
+            Server.SendEvent.AddListener(EventHandler);
         }
 
         private void FixedUpdate()
         {
-            if (Status != FrameworkStatus.WORKING || !Server.ServerConnected || Reference.FaceLogger == null) return;
+            if (!Server.ServerConnected || Logger == null) return;
 
             counter++;
-            if (counter % 5 != 0) return;
-            
-            SRanipal_Lip_v2.GetLipWeightings(out lipWeightings);
-            if (oldLipWeightings == null)
-            {
-                oldLipWeightings = new Dictionary<LipShape_v2, float>(lipWeightings);
-                return;
-            }
+            if (counter % 10 != 0) return;
 
+            if (SRanipal_Lip_Framework.Status != SRanipal_Lip_Framework.FrameworkStatus.WORKING) return;
+
+            SRanipal_Lip_v2.GetLipWeightings(out _shapes);
+            
             var sb = new StringBuilder();
-            foreach (var (key, value) in lipWeightings)
+            if (!log)
             {
-                if (value < 0.01f || Math.Abs(oldLipWeightings[key] - value) < 0.01f) continue;
-                sb.Append(Enum.GetName(typeof(LipShape_v2), key))
-                    .Append(" - ")
-                    .Append(value)
-                    .Append("; ");
+                sb.Append("timestamp|");
+                foreach (var value in Enum.GetNames(typeof(LipShape_v2))) sb.Append($"{value}|");
+                sb.Remove(sb.Length - 1, 1);
+                Logger.AddInfo(sb.ToString());
+                sb.Clear();
+                log = true;
             }
-            if (sb.Length == 0) return;
-            Reference.FaceLogger.AddInfo(sb.ToString());
-            oldLipWeightings = new Dictionary<LipShape_v2, float>(lipWeightings);
+            sb.Append(DateTime.Now.ToString("HH:mm:ss.fff")).Append("|");
+            foreach (var value in _shapes.Values) sb.Append($"{value}|");
+            sb.Remove(sb.Length - 1, 1);
+            Logger.AddInfo(sb.ToString());
+            Logger.WriteInfo();
         }
 
-        private void OnDestroy()
+        private static void EventHandler()
         {
-            if (Status != FrameworkStatus.STOP)
-            {
-                var result = SRanipal_API.Release(SRanipal_Lip_v2.ANIPAL_TYPE_LIP_V2);
-                if (result == Error.WORK) Debug.Log("[SRanipal] Release Version 2 Lip : " + result);
-                else Debug.LogError("[SRanipal] Release Version 2 Lip : " + result);
-                Reference.FaceLogger.WriteInfo();
-            }
-            else
-                Debug.Log("[SRanipal] Stop Framework : module not on");
-
-            Status = FrameworkStatus.STOP;
+            if (Logger == null) return;
+            Logger.AddInfo(
+                $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}");
+            Logger.WriteInfo();
         }
     }
 }

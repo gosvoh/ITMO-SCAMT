@@ -1,47 +1,100 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ITMO.Scripts;
 using UnityEngine;
 using Narupa.Visualisation;
 using Plugins.Narupa.Frame;
+using ViveSR.anipal.Eye;
+using Logger = ITMO.Scripts.Logger;
 
 namespace NarupaXR.Interaction
 {
     public class EyeInteraction : MonoBehaviour
     {
-        [Header("The provider of the frames which can be grabbed.")]
-        [SerializeField]
-        private SynchronisedFrameSource frameSource;
+        [SerializeField] private SynchronisedFrameSource frameSource;
+        [SerializeField] private GameObject atomPrefab;
 
-        [SerializeField]
-        [Header("This object is atom prefab for raycasting")]
-        private GameObject atomPrefab;
+        public static readonly List<GameObject> Spheres = new List<GameObject>();
+        public static int VisibilityRadius = 100;
+        public static Logger Logger;
+        public static int EyeGazeChangedCounter;
 
-        private List<GameObject> spheres;
+        private static int _id = -10;
+        
+        private readonly GazeIndex[] gazePriority = { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
 
-        private bool isInit;
         private GameObject parent;
+        private GameObject cameraObj;
+        private int counter = -1;
+        private bool log;
 
-        private void Awake() => SetWalls();
+        private void Awake()
+        {
+            cameraObj = GameObject.Find("Camera");
+            SetWalls();
+        }
 
-        public void OnEnable() => isInit = false;
+        private void Start()
+        {
+            Server.SendEvent.AddListener(EventHandler);
+        }
 
-        private void OnDisable() => Destroy(parent);
+        private void EventHandler()
+        {
+            if (Logger == null) return;
+            Logger.AddInfo(
+                $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}; Gaze changed - {EyeGazeChangedCounter}");
+            Logger.WriteInfo();
+            EyeGazeChangedCounter = 0;
+        }
 
         private void Update()
         {
-            if (isInit)
+            if (!Server.ServerConnected || Logger == null)
             {
-                var frame = frameSource.CurrentFrame;
-                UpdateSpherePositions(frame);
+                return;
             }
-            else
-            {
-                var frame = frameSource.CurrentFrame;
 
-                if (isInit || frame?.ParticlePositions == null) return;
-                isInit = true;
-                CreateSphere(frame);
+            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
+                SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT)
+            {
+                Debug.LogError("SRanipal Error");
+                return;
             }
+            
+            if (!log)
+            {
+                Logger.AddInfo("timestamp|position|ID");
+                log = true;
+            }
+
+            foreach (var index in gazePriority)
+            {
+                var layer = atomPrefab.layer;
+                var eyeFocus = SRanipal_Eye_v2.Focus(index, out _, out var focusInfo, 0,
+                    VisibilityRadius, 1 << layer);
+                if (!eyeFocus) continue;
+                var info = focusInfo.transform.GetComponent<IInfo>();
+                if (info == null) break;
+                if (info.Index == _id) break;
+                _id = info.Index;
+                EyeGazeChangedCounter++;
+                Logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
+                Logger.WriteInfo();
+            }
+        }
+
+        private void OnDisable() => Destroy(parent);
+
+        private void FixedUpdate()
+        {
+            var frame = frameSource.CurrentFrame;
+            if (frame == null && Server.ServerConnected) GameObject.Find("App").GetComponent<App>().Disconnect();
+            if (counter++ % 10 != 0) return;
+            if (frame?.ParticleCount == 0 || Spheres.Count == frame?.ParticleCount) return;
+            Destroy(parent);
+            Spheres.Clear();
+            CreateSphere(frame);
         }
 
         private void CreateSphere(Frame frame)
@@ -49,7 +102,7 @@ namespace NarupaXR.Interaction
             var simSpace = GameObject.Find("Simulation Space");
             simSpace.transform.localPosition = Vector3.zero;
             simSpace.transform.rotation = new Quaternion();
-            
+
             parent = new GameObject("ParentEyeInteraction")
             {
                 transform =
@@ -61,16 +114,19 @@ namespace NarupaXR.Interaction
                 }
             };
 
-            spheres = new List<GameObject>();
-            
-            for (var i = 0; i < frame.ParticlePositions.Length; ++i)
+            var particles = frame.Particles;
+            var particlePositions = frame.ParticlePositions;
+            for (int i = 0, partNum = frame.ParticleCount; i < partNum; ++i)
             {
-                var particlePosition = frame.ParticlePositions[i];
-                var sphere = Instantiate(atomPrefab, particlePosition, Quaternion.identity, parent.transform);
-                var atomInfo = sphere.GetComponent<AtomInfo>();
-                spheres.Add(sphere);
-                atomInfo.Index = frame.Particles[i].Index;
-                atomInfo.Obj = sphere;
+                if (Vector3.Distance(particlePositions[i], cameraObj.transform.position) >= VisibilityRadius) continue;
+                var atom = Spheres.Find(o => o.GetComponent<AtomInfo>().Index == particles[i].Index);
+                if (atom != null) continue;
+                atom = Instantiate(atomPrefab, particlePositions[i], Quaternion.identity);
+                atom.transform.SetParent(parent.transform, false);
+                var info = atom.GetComponent<AtomInfo>();
+                info.Index = particles[i].Index;
+                info.Obj = atom;
+                Spheres.Add(atom);
             }
         }
 
@@ -82,22 +138,6 @@ namespace NarupaXR.Interaction
                 var wallInfo = wall.GetComponent<WallInfo>();
                 wallInfo.Index = -(i + 1);
                 wallInfo.Obj = wall;
-            }
-        }
-
-        private void UpdateSpherePositions(Frame frame)
-        {
-            if (frame.ParticlePositions.Length != spheres.Count)
-            {
-                OnDisable();
-                CreateSphere(frame);
-            }
-            
-            for (var i = 0; i < frame.ParticlePositions.Length; ++i)
-            {
-                var atomPos = frame.ParticlePositions[i];
-                if (spheres.Count > 0)
-                    spheres[i].transform.localPosition = new Vector3(atomPos.x, atomPos.y, atomPos.z);
             }
         }
     }
