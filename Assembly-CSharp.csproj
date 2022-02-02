@@ -162,14 +162,8 @@
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Leopotam.Ecs">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Leopotam.Ecs.dll</HintPath>
- </Reference>
  <Reference Include="CodeCoverageTools.Editor">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/CodeCoverageTools.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
@@ -186,11 +180,17 @@
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.UI">
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.TextMeshPro.Editor">
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <Reference Include="Leopotam.Ecs">
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Leopotam.Ecs.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
