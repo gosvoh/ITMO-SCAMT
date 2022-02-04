@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NarupaIMD.UI;
 using NarupaXR.Interaction;
 using UnityEngine;
@@ -13,6 +14,16 @@ namespace ITMO.Scripts
         private readonly bool answer = false;
 
         private readonly Dictionary<string, bool> answers = new Dictionary<string, bool>();
+        private string[] list;
+        private bool showDropdown;
+        private string levelToShow = "Choose level";
+        private Vector2 scrollViewVector = Vector2.zero;
+
+        private void Awake()
+        {
+            Level.Initialize();
+            list = Level.LevelNamesList.ToArray();
+        }
 
         private void OnGUI()
         {
@@ -20,52 +31,100 @@ namespace ITMO.Scripts
 
             if (!Server.ServerConnected)
             {
-                if (GUILayout.Button("Начать")) app.GetComponent<App>().StartSim();
-                if (GUILayout.Button("Присоединиться")) app.GetComponent<Server>().Connect();
-                if (GUILayout.Button("Выход")) app.GetComponent<App>().Quit();
+                if (GUILayout.Button("Start"))
+                {
+                    if (levelToShow.Equals("Choose level"))
+                    {
+                        var level = Level.DifficultyLevels.Keys.First();
+                        Server.Send(Level.GetLevelPath(Level.DifficultyLevels[level].First()));
+                        Level.CurrentLevelName = level;
+                        Level.CurrentLevelNode = Level.LevelNamesList.Find(level);
+                    }
+                    else
+                    {
+                        Server.Send(Level.GetLevelPath(levelToShow));
+                        Level.CurrentLevelName = levelToShow;
+                        Level.CurrentLevelNode = Level.LevelNamesList.Find(levelToShow);
+                    }
+
+                    app.GetComponent<Server>().Connect();
+                }
+
+                if (GUILayout.Button("Connect")) app.GetComponent<Server>().Connect();
+                if (GUILayout.Button("Exit")) app.GetComponent<App>().Quit();
+                if (GUILayout.Button(levelToShow)) showDropdown = true;
+
+                if (showDropdown)
+                {
+                    scrollViewVector = GUILayout.BeginScrollView(scrollViewVector, GUILayout.MaxHeight(200));
+
+                    foreach (var s in list)
+                    {
+                        if (!GUILayout.Button(s)) continue;
+                        showDropdown = false;
+                        levelToShow = s;
+                    }
+
+                    GUILayout.EndScrollView();
+                }
+
                 answers.Clear();
             }
 
             else
             {
-                GUILayout.Box(Level.CurrentLevelName);
-                GUILayout.Box(Level.GetLevelTask(Level.CurrentLevelName));
+                if (Level.CurrentLevelName != null)
+                {
+                    GUILayout.Box(Level.CurrentLevelName);
+                    GUILayout.Box(Level.AllTasks?[Level.CurrentLevelName]);
+                }
 
                 // answer = GUILayout.Toggle(answer, "Ответ верный?");
 
-                if (GUILayout.Button("Назад"))
+                if (Level.CurrentLevelName != null)
                 {
-                    if (Level.CurrentLevel.Previous != null)
+                    if (GUILayout.Button(Level.CurrentLevelNode.Previous == null
+                            ? "Disconnect"
+                            : "Back to " + Level.CurrentLevelNode.Previous.Value))
                     {
-                        Level.CurrentLevel = Level.CurrentLevel.Previous;
-                        Level.CurrentLevelName = Level.CurrentLevel.Value;
-                        app.GetComponent<Server>().Send(Level.GetLevelPath(Level.CurrentLevelName));
-                    }
-                    else
-                    {
-                        manager.GotoScene(scene);
-                        app.GetComponent<App>().Disconnect();
+                        if (Level.CurrentLevelNode.Previous != null)
+                        {
+                            Level.CurrentLevelNode = Level.CurrentLevelNode.Previous;
+                            Level.CurrentLevelName = Level.CurrentLevelNode.Value;
+                            Server.Send(Level.GetLevelPath(Level.CurrentLevelName));
+                        }
+                        else
+                        {
+                            manager.GotoScene(scene);
+                            app.GetComponent<App>().Disconnect();
+                        }
                     }
                 }
 
-                if (GUILayout.Button("Вперед"))
+                if (Level.CurrentLevelName != null)
                 {
-                    if (answers.ContainsKey(Level.CurrentLevelName)) answers[Level.CurrentLevelName] = answer;
-                    else answers.Add(Level.CurrentLevelName, answer);
-                    if (Level.CurrentLevel.Next != null)
+                    if (GUILayout.Button(Level.CurrentLevelNode.Next == null
+                            ? "Disconnect"
+                            : "Next to " + Level.CurrentLevelNode.Next.Value))
                     {
-                        Level.CurrentLevel = Level.CurrentLevel.Next;
-                        Level.CurrentLevelName = Level.CurrentLevel.Value;
-                        app.GetComponent<Server>().Send(Level.GetLevelPath(Level.CurrentLevelName));
-                    }
-                    else
-                    {
-                        manager.GotoScene(scene);
-                        app.GetComponent<App>().Disconnect();
+                        // if (Level.CurrentLevelName != null && answers.ContainsKey(Level.CurrentLevelName))
+                        //     answers[Level.CurrentLevelName] = answer;
+                        // else answers.Add(Level.CurrentLevelName, answer);
+                        if (Level.CurrentLevelNode.Next != null)
+                        {
+                            Level.CurrentLevelNode = Level.CurrentLevelNode.Next;
+                            Level.CurrentLevelName = Level.CurrentLevelNode.Value;
+                            Server.Send(Level.GetLevelPath(Level.CurrentLevelName));
+                        }
+                        else
+                        {
+                            manager.GotoScene(scene);
+                            app.GetComponent<App>().Disconnect();
+                        }
                     }
                 }
 
-                if (GUILayout.Button("Выход"))
+                if (GUILayout.Button("Disconnect"))
                 {
                     manager.GotoScene(scene);
                     app.GetComponent<App>().Disconnect();
@@ -74,32 +133,32 @@ namespace ITMO.Scripts
 
             GUILayout.EndArea();
 
-            if (!Server.ServerConnected) return;
-            GUI.Label(new Rect(16 * 2 + 192, 16, 192, 100), $"Радиус {EyeInteraction.VisibilityRadius}");
+            // if (!Server.ServerConnected) return;
+            GUI.Label(new Rect(16 * 2 + 192, 16, 192, 100), $"Radius {EyeInteraction.VisibilityRadius}");
             EyeInteraction.VisibilityRadius = (int) GUI.HorizontalSlider(new Rect(16 * 2 + 192, 16 * 2, 192, 100),
                 EyeInteraction.VisibilityRadius, 0.0F, 100.0F);
         }
 
-        private void GetAnswers()
-        {
-            GUILayout.BeginArea(new Rect(16, 16, 192, 512));
-
-            var rect = new Rect(20, 20, 100, 100);
-            rect = GUI.Window(0, rect, func, "Ответы");
-
-            GUILayout.EndArea();
-        }
-
-        private void func(int id)
-        {
-            GUILayout.TextArea("wft");
-            GUILayout.TextArea("wft");
-            GUILayout.TextArea("wft");
-            if (GUILayout.Button("Ок"))
-            {
-                manager.GotoScene(scene);
-                app.GetComponent<App>().Disconnect();
-            }
-        }
+        // private void GetAnswers()
+        // {
+        //     GUILayout.BeginArea(new Rect(16, 16, 192, 512));
+        //
+        //     var rect = new Rect(20, 20, 100, 100);
+        //     rect = GUI.Window(0, rect, func, "Ответы");
+        //
+        //     GUILayout.EndArea();
+        // }
+        //
+        // private void func(int id)
+        // {
+        //     GUILayout.TextArea("wft");
+        //     GUILayout.TextArea("wft");
+        //     GUILayout.TextArea("wft");
+        //     if (GUILayout.Button("Ок"))
+        //     {
+        //         manager.GotoScene(scene);
+        //         app.GetComponent<App>().Disconnect();
+        //     }
+        // }
     }
 }
