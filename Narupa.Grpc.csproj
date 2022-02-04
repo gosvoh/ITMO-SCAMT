@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{181E4109-09BD-B9D9-D566-11550F0BEFE1}</ProjectGuid>
+    <ProjectGuid>{13309CA4-0356-FBFF-191B-BA1484188040}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Narupa.Grpc</AssemblyName>
@@ -79,10 +79,10 @@
      <Compile Include="Assets\Plugins\Narupa\Grpc\Trajectory\TrajectorySession.cs" />
      <None Include="Assets\Plugins\Narupa\Grpc\Narupa.Grpc.asmdef" />
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -271,46 +271,46 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Castle.Core">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Castle.Core.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Castle.Core.dll</HintPath>
  </Reference>
  <Reference Include="Essd">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Essd.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Essd.dll</HintPath>
  </Reference>
  <Reference Include="Google.Protobuf">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Google.Protobuf.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Google.Protobuf.dll</HintPath>
  </Reference>
  <Reference Include="Grpc.Core.Api">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Grpc.Core.Api.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Grpc.Core.Api.dll</HintPath>
  </Reference>
  <Reference Include="Grpc.Core">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Grpc.Core.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Grpc.Core.dll</HintPath>
  </Reference>
  <Reference Include="Narupa.Protocol">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Narupa.Protocol.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Narupa.Protocol.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="NSubstitute">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/NSubstitute.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/NSubstitute.dll</HintPath>
  </Reference>
  <Reference Include="System.Buffers">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Buffers.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Buffers.dll</HintPath>
  </Reference>
  <Reference Include="System.Memory">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Memory.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Memory.dll</HintPath>
  </Reference>
  <Reference Include="System.Runtime.CompilerServices.Unsafe">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Channels">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Threading.Channels.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Threading.Channels.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Tasks.Extensions">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Threading.Tasks.Extensions.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Threading.Tasks.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -669,11 +669,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Narupa.Core.csproj">
-      <Project>{B7BF4DC3-0957-24FD-8A55-BC673C5B10FD}</Project>
+      <Project>{C2831D70-31CF-B82A-35CE-A806255C3590}</Project>
       <Name>Narupa.Core</Name>
     </ProjectReference>
     <ProjectReference Include="Narupa.Frame.csproj">
-      <Project>{BA4555D6-7B5F-DC1F-813B-0A0353F896F4}</Project>
+      <Project>{BAC483FC-1BA0-745E-93AD-97092FC91107}</Project>
       <Name>Narupa.Frame</Name>
     </ProjectReference>
   </ItemGroup>
