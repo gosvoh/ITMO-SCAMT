@@ -11,16 +11,10 @@ namespace ITMO.Scripts
 
         private void Update()
         {
-            try
-            {
-                string task = Level.GetLevelTask(Level.CurrentLevelName);
-                text.text = task;
-                panel.SetActive(true);
-            }
-            catch (Exception e)
-            {
-                panel.SetActive(false);
-            }
+            var task = Level.AllTasks?[Level.CurrentLevelName];
+            if (task == null) panel.SetActive(false);
+            text.text = task;
+            panel.SetActive(true);
         }
     }
 }

@@ -13,8 +13,8 @@ namespace ITMO.Scripts
 
         public void OnClick()
         {
-            server.Send(Level.GetLevelPath(text.text));
-            Level.CurrentLevel = Level.LevelList.Find(text.text);
+            Server.Send(Level.GetLevelPath(text.text));
+            Level.CurrentLevelNode = Level.LevelNamesList.Find(text.text);
             Level.CurrentLevelName = text.text;
             server.Connect();
         }

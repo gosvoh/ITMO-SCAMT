@@ -7,7 +7,7 @@ namespace ITMO.Scripts
         [SerializeField] private GameObject buttonTemplate;
         public void Start()
         {
-            var node = Level.LevelList.First;
+            var node = Level.LevelNamesList.First;
             while (node != null)
             {
                 var button = Instantiate(buttonTemplate, buttonTemplate.transform.parent, false);

@@ -111,12 +111,12 @@ namespace ITMO.Scripts
             Reference.Stopwatch.Restart();
         }
 
-        public void Send(string line)
+        public static void Send(string pathToMolecule, string host = "127.0.0.1", int port = 7777)
         {
             Reference.Stopwatch.Stop();
             SendEvent.Invoke();
-            var client = new TcpClient("localhost", 7777);
-            var buffer = Encoding.UTF8.GetBytes(line);
+            var client = new TcpClient(host, port);
+            var buffer = Encoding.UTF8.GetBytes(pathToMolecule);
             client.GetStream().Write(buffer, 0, buffer.Length);
             client.Close();
             Reference.Stopwatch.Restart();

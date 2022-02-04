@@ -50,15 +50,12 @@ namespace NarupaXR.Interaction
 
         private void Update()
         {
-            if (!Server.ServerConnected || Logger == null)
-            {
-                return;
-            }
+            if (!Server.ServerConnected || Logger == null) return;
 
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
                 SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT)
             {
-                Debug.LogError("SRanipal Error");
+                // Debug.LogError("SRanipal Error");
                 return;
             }
             

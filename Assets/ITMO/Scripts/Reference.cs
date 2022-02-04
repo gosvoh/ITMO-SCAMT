@@ -11,6 +11,5 @@ namespace ITMO.Scripts
     {
         public static int ID = -1;
         public static Stopwatch Stopwatch = new Stopwatch();
-        public static App AppInstance { get; set; }
     }
 }

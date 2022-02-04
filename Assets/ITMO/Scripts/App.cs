@@ -1,4 +1,5 @@
-﻿using NarupaXR;
+﻿using System;
+using NarupaXR;
 using UnityEngine;
 
 namespace ITMO.Scripts
@@ -10,22 +11,11 @@ namespace ITMO.Scripts
 
         public void Quit() => GetComponent<NarupaXRPrototype>().Quit();
 
-        private void Awake()
-        {
-            Reference.AppInstance = this;
-        }
-
-        public void StartSim()
-        {
-            server.Send(Level.GetLevelPath(Level.CurrentLevel.Value));
-            Level.CurrentLevel = Level.LevelList.First;
-            Level.CurrentLevelName = Level.CurrentLevel.Value;
-            server.Connect();
-        }
-
         public void Disconnect()
         {
             server.Disconnect();
+            Level.CurrentLevelNode = null;
+            Level.CurrentLevelName = null;
             taskPanel.SetActive(false);
         }
 
