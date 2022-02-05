@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace ITMO.Scripts
@@ -11,8 +10,12 @@ namespace ITMO.Scripts
 
         private void Update()
         {
-            var task = Level.AllTasks?[Level.CurrentLevelName];
-            if (task == null) panel.SetActive(false);
+            if (Level.CurrentLevelName == null || !Level.AllTasks.TryGetValue(Level.CurrentLevelName, out var task))
+            {
+                panel.SetActive(false);
+                return;
+            }
+
             text.text = task;
             panel.SetActive(true);
         }

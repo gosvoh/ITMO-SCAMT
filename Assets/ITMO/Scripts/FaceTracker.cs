@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Castle.Core.Internal;
-using Plugins.Narupa.Core;
 using UnityEngine;
 using ViveSR.anipal.Lip;
 
-namespace ITMO.Scripts.SRanipal
+namespace ITMO.Scripts
 {
     public class FaceTracker : MonoBehaviour
     {
         public static Logger Logger;
 
         private int counter = -1;
-        private Dictionary<LipShape_v2, float> _shapes;
-        private bool log;
+        private Dictionary<LipShape_v2, float> shapes;
+        private bool logHeaderSet;
 
         private void Start()
         {
@@ -31,20 +29,20 @@ namespace ITMO.Scripts.SRanipal
 
             if (SRanipal_Lip_Framework.Status != SRanipal_Lip_Framework.FrameworkStatus.WORKING) return;
 
-            SRanipal_Lip_v2.GetLipWeightings(out _shapes);
+            SRanipal_Lip_v2.GetLipWeightings(out shapes);
             
             var sb = new StringBuilder();
-            if (!log)
+            if (!logHeaderSet)
             {
                 sb.Append("timestamp|");
                 foreach (var value in Enum.GetNames(typeof(LipShape_v2))) sb.Append($"{value}|");
                 sb.Remove(sb.Length - 1, 1);
                 Logger.AddInfo(sb.ToString());
                 sb.Clear();
-                log = true;
+                logHeaderSet = true;
             }
             sb.Append(DateTime.Now.ToString("HH:mm:ss.fff")).Append("|");
-            foreach (var value in _shapes.Values) sb.Append($"{value}|");
+            foreach (var value in shapes.Values) sb.Append($"{value}|");
             sb.Remove(sb.Length - 1, 1);
             Logger.AddInfo(sb.ToString());
             Logger.WriteInfo();

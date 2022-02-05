@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using NarupaIMD.UI;
-using NarupaXR.Interaction;
 using UnityEngine;
 
 namespace ITMO.Scripts
@@ -14,10 +13,10 @@ namespace ITMO.Scripts
         private readonly bool answer = false;
 
         private readonly Dictionary<string, bool> answers = new Dictionary<string, bool>();
-        private string[] list;
-        private bool showDropdown;
         private string levelToShow = "Choose level";
+        private string[] list;
         private Vector2 scrollViewVector = Vector2.zero;
+        private bool showDropdown;
 
         private void Awake()
         {
@@ -36,7 +35,7 @@ namespace ITMO.Scripts
                     if (levelToShow.Equals("Choose level"))
                     {
                         var level = Level.DifficultyLevels.Keys.First();
-                        Server.Send(Level.GetLevelPath(Level.DifficultyLevels[level].First()));
+                        Server.Send(Level.DifficultyLevels[level].First());
                         Level.CurrentLevelName = level;
                         Level.CurrentLevelNode = Level.LevelNamesList.Find(level);
                     }
@@ -76,13 +75,12 @@ namespace ITMO.Scripts
                 if (Level.CurrentLevelName != null)
                 {
                     GUILayout.Box(Level.CurrentLevelName);
-                    GUILayout.Box(Level.AllTasks?[Level.CurrentLevelName]);
+                    if (Level.AllTasks.TryGetValue(Level.CurrentLevelName, out var task)) GUILayout.Box(task);
                 }
 
                 // answer = GUILayout.Toggle(answer, "Ответ верный?");
 
                 if (Level.CurrentLevelName != null)
-                {
                     if (GUILayout.Button(Level.CurrentLevelNode.Previous == null
                             ? "Disconnect"
                             : "Back to " + Level.CurrentLevelNode.Previous.Value))
@@ -99,10 +97,8 @@ namespace ITMO.Scripts
                             app.GetComponent<App>().Disconnect();
                         }
                     }
-                }
 
                 if (Level.CurrentLevelName != null)
-                {
                     if (GUILayout.Button(Level.CurrentLevelNode.Next == null
                             ? "Disconnect"
                             : "Next to " + Level.CurrentLevelNode.Next.Value))
@@ -122,7 +118,6 @@ namespace ITMO.Scripts
                             app.GetComponent<App>().Disconnect();
                         }
                     }
-                }
 
                 if (GUILayout.Button("Disconnect"))
                 {
@@ -134,9 +129,9 @@ namespace ITMO.Scripts
             GUILayout.EndArea();
 
             // if (!Server.ServerConnected) return;
-            GUI.Label(new Rect(16 * 2 + 192, 16, 192, 100), $"Radius {EyeInteraction.VisibilityRadius}");
-            EyeInteraction.VisibilityRadius = (int) GUI.HorizontalSlider(new Rect(16 * 2 + 192, 16 * 2, 192, 100),
-                EyeInteraction.VisibilityRadius, 0.0F, 100.0F);
+            // GUI.Label(new Rect(16 * 2 + 192, 16, 192, 100), $"Radius {EyeInteraction.VisibilityRadius}");
+            // EyeInteraction.VisibilityRadius = (int) GUI.HorizontalSlider(new Rect(16 * 2 + 192, 16 * 2, 192, 100),
+            //     EyeInteraction.VisibilityRadius, 0.0F, 100.0F);
         }
 
         // private void GetAnswers()

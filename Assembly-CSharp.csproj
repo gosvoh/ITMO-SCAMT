@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ITMO\Scripts\App.cs" />
-     <Compile Include="Assets\ITMO\Scripts\AtomInfo.cs" />
      <Compile Include="Assets\ITMO\Scripts\Button.cs" />
      <Compile Include="Assets\ITMO\Scripts\ButtonList.cs" />
      <Compile Include="Assets\ITMO\Scripts\DesktopUI.cs" />
@@ -74,7 +73,6 @@
      <Compile Include="Assets\ITMO\Scripts\RendererGenerator.cs" />
      <Compile Include="Assets\ITMO\Scripts\Server.cs" />
      <Compile Include="Assets\ITMO\Scripts\TaskPanel.cs" />
-     <Compile Include="Assets\ITMO\Scripts\WallInfo.cs" />
      <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye.cs" />
      <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeData.cs" />
      <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_EyeDataType_v1.cs" />
@@ -128,6 +126,7 @@
      <None Include="Assets\StreamingAssets\Molecules\hardcore\4_04.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\StreamingAssets\Molecules\hard\3_04.txt" />
+     <None Include="Assets\StreamingAssets\Molecules\Benzene.xml" />
      <None Include="Assets\StreamingAssets\Molecules\easy\1_14.txt" />
      <None Include="Assets\StreamingAssets\Molecules\hardcore\4_08.txt" />
      <None Include="Assets\StreamingAssets\Molecules\medium\2_02.txt" />
@@ -139,6 +138,7 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\ViveSR\Shaders\DartBoardShader.shader" />
+     <None Include="Assets\StreamingAssets\Molecules\Caffeine.xml" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\StreamingAssets\Molecules\easy\1_16.txt" />
      <None Include="Assets\StreamingAssets\Molecules\hard\3_14.txt" />
@@ -148,6 +148,7 @@
      <None Include="Assets\StreamingAssets\Molecules\easy\1_08.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\StreamingAssets\Molecules\hard\3_12.txt" />
+     <None Include="Assets\StreamingAssets\Molecules\2hld.xml" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\StreamingAssets\Molecules\hardcore\4_10.txt" />

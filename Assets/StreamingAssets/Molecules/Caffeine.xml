@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulation Name="c8h10n4o2">
+  <SystemProperties>
+    <SimulationBoundary SimulationBox="2, 2, 2" MinimumBoxVolume="4" />
+    <Thermostat Type="BerendsenThermostat" EquilibriumTemperature="200" MaximumTemperature="10000" BerendsenCoupling="0.003" />
+    <Integrator Type="VelocityVerlet" TimeStep="0.001" />
+  </SystemProperties>
+  <Topology>
+    <Templates>
+      <Residue Name="c8h10n4o2"> <!-- Created by Nadezhda Karandasheva March 17 2020-->
+        <Atoms>
+            <Atom Element="Oxygen" Position="-0.2054,0.6868,-1.2514" />
+            <Atom Element="Oxygen" Position="-0.4121,0.3478,-0.9601" />
+            <Atom Element="Nitrogen" Position="-0.2951,0.4858,-1.1001" />
+            <Atom Element="Nitrogen" Position="-0.4251,0.5422,-1.5175" />
+            <Atom Element="Nitrogen" Position="-0.5492,0.3369,-1.4381" />
+            <Atom Element="Nitrogen" Position="-0.4780,0.3038,-1.1955" />
+            <Atom Element="Carbon" Position="-0.2449,0.5433,-0.9625" />
+            <Atom Element="Carbon" Position="-0.4137,0.6571,-1.5901" />
+            <Atom Element="Carbon" Position="-0.2820,0.5288,-1.2441" />
+            <Atom Element="Carbon" Position="-0.5429,0.4370,-1.5737" />
+            <Atom Element="Carbon" Position="-0.5737,0.2038,-1.1620" />
+            <Atom Element="Carbon" Position="-0.4091,0.3639,-1.0848" />
+            <Atom Element="Carbon" Position="-0.3662,0.4704,-1.3627" />
+            <Atom Element="Carbon" Position="-0.4556,0.3551,-1.3279" />
+            <Atom Element="Hydrogen" Position="-0.1517,0.5117,-0.9451" />
+            <Atom Element="Hydrogen" Position="-0.3050,0.5117,-0.8891" />
+            <Atom Element="Hydrogen" Position="-0.2461,0.6433,-0.9657" />
+            <Atom Element="Hydrogen" Position="-0.4855,0.6598,-1.6597" />
+            <Atom Element="Hydrogen" Position="-0.3242,0.6598,-1.6345" />
+            <Atom Element="Hydrogen" Position="-0.4232,0.7360,-1.5294" />
+            <Atom Element="Hydrogen" Position="-0.5932,0.4348,-1.6601" />
+            <Atom Element="Hydrogen" Position="-0.5379,0.1468,-1.0880" />
+            <Atom Element="Hydrogen" Position="-0.5919,0.1468,-1.2421" />
+            <Atom Element="Hydrogen" Position="-0.6586,0.2474,-1.1323" />
+        </Atoms>
+        <Bonds>
+            <Bond A="11" B="5" />
+            <Bond A="5" B="13" />
+            <Bond A="13" B="4" />
+            <Bond A="4" B="9" />
+            <Bond A="9" B="3" />
+            <Bond A="3" B="12" />
+            <Bond A="12" B="13" />
+            <Bond A="12" B="8" />
+            <Bond A="8" B="2" />
+            <Bond A="2" B="11" />
+            <Bond A="3" B="7" />
+            <Bond A="10" B="5" />
+            <Bond A="1" B="11" />
+            <Bond A="6" B="2" />
+            <Bond A="0" B="8" />
+            <Bond A="20" B="9" />
+            <Bond A="19" B="7" />
+            <Bond A="18" B="7" />
+            <Bond A="17" B="7" />
+            <Bond A="23" B="10" />
+            <Bond A="22" B="10" />
+            <Bond A="21" B="10" />
+            <Bond A="16" B="6" />
+            <Bond A="15" B="6" />
+            <Bond A="14" B="6" />
+         </Bonds>
+        <ForceFields>
+          <InteractiveGaussianForceField GradientScaleFactor="2000" />
+          <MM3ForceField>
+            <MM3AtomMappings>
+              <MM3AtomMapping AtomPath="0" Type="1" />
+                <MM3AtomMapping AtomPath="1" Type="1" />
+                <MM3AtomMapping AtomPath="2" Type="8" />
+                <MM3AtomMapping AtomPath="3" Type="8" />
+                <MM3AtomMapping AtomPath="4" Type="8" />
+                <MM3AtomMapping AtomPath="5" Type="8" />
+                <MM3AtomMapping AtomPath="6" Type="1" />
+                <MM3AtomMapping AtomPath="7" Type="1" />
+                <MM3AtomMapping AtomPath="8" Type="1" />
+                <MM3AtomMapping AtomPath="9" Type="1" />
+                <MM3AtomMapping AtomPath="10" Type="1" />
+                <MM3AtomMapping AtomPath="11" Type="1" />
+                <MM3AtomMapping AtomPath="12" Type="1" />
+                <MM3AtomMapping AtomPath="13" Type="1" />
+                <MM3AtomMapping AtomPath="14" Type="5" />
+                <MM3AtomMapping AtomPath="15" Type="5" />
+                <MM3AtomMapping AtomPath="16" Type="5" />
+                <MM3AtomMapping AtomPath="17" Type="5" />
+                <MM3AtomMapping AtomPath="18" Type="5" />
+                <MM3AtomMapping AtomPath="19" Type="5" />
+                <MM3AtomMapping AtomPath="20" Type="5" />
+                <MM3AtomMapping AtomPath="21" Type="5" />
+                <MM3AtomMapping AtomPath="22" Type="5" />
+                <MM3AtomMapping AtomPath="23" Type="5" />
+            </MM3AtomMappings>
+          </MM3ForceField>
+          <LennardJonesForceField>
+            <LennardJonesAtomMappings>
+              <LennardJonesAtomMapping AtomPath="0" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="1" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="2" MM3Type="8" />
+                <LennardJonesAtomMapping AtomPath="3" MM3Type="8" />
+                <LennardJonesAtomMapping AtomPath="4" MM3Type="8" />
+                <LennardJonesAtomMapping AtomPath="5" MM3Type="8" />
+                <LennardJonesAtomMapping AtomPath="6" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="7" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="8" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="9" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="10" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="11" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="12" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="13" MM3Type="1" />
+                <LennardJonesAtomMapping AtomPath="14" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="15" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="16" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="17" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="18" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="19" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="20" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="21" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="22" MM3Type="5" />
+                <LennardJonesAtomMapping AtomPath="23" MM3Type="5" />
+            </LennardJonesAtomMappings>
+          </LennardJonesForceField>
+        </ForceFields>
+      </Residue>
+    </Templates> 
+
+    <Spawners>
+      <Spawner Name="c8h10n4o2" Template="c8h10n4o2" Count="1" />
+    </Spawners>
+  </Topology>
+</Simulation>
