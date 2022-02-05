@@ -2,12 +2,9 @@
 
 namespace ITMO.Scripts
 {
-    public interface IInfo
+    public class Info : MonoBehaviour
     {
-        int Index { get; }
-        
-        GameObject Obj { get; }
-
-        // void Focus();
+        public int Index { set; get; }
+        public GameObject Obj { set; get; }
     }
 }
