@@ -12,8 +12,11 @@ namespace ITMO.Scripts
         [SerializeField] private GameObject scene;
         private readonly bool answer = false;
 
+        private const string ChooseMsg = "Choose level";
+        private const string EmptyMsg = "Empty list of levels";
+
         private readonly Dictionary<string, bool> answers = new Dictionary<string, bool>();
-        private string levelToShow = "Choose level";
+        private string levelToShow = ChooseMsg;
         private string[] list;
         private Vector2 scrollViewVector = Vector2.zero;
         private bool showDropdown;
@@ -32,7 +35,7 @@ namespace ITMO.Scripts
             {
                 if (GUILayout.Button("Start"))
                 {
-                    if (levelToShow.Equals("Choose level"))
+                    if (levelToShow.Equals(ChooseMsg))
                     {
                         var level = Level.DifficultyLevels.Keys.First();
                         Server.Send(Level.DifficultyLevels[level].First());
@@ -51,11 +54,15 @@ namespace ITMO.Scripts
 
                 if (GUILayout.Button("Connect")) app.GetComponent<Server>().Connect();
                 if (GUILayout.Button("Exit")) app.GetComponent<App>().Quit();
-                if (GUILayout.Button(levelToShow)) showDropdown = true;
+                if (GUILayout.Button(levelToShow)) showDropdown = !showDropdown;
 
                 if (showDropdown)
                 {
+                    Level.Initialize();
+                    
                     scrollViewVector = GUILayout.BeginScrollView(scrollViewVector, GUILayout.MaxHeight(200));
+
+                    if (list.Length == 0) GUILayout.Box(EmptyMsg);
 
                     foreach (var s in list)
                     {
@@ -75,7 +82,7 @@ namespace ITMO.Scripts
                 if (Level.CurrentLevelName != null)
                 {
                     GUILayout.Box(Level.CurrentLevelName);
-                    if (Level.AllTasks.TryGetValue(Level.CurrentLevelName, out var task)) GUILayout.Box(task);
+                    if (Level.GetLevelTask(Level.CurrentLevelName, out var task)) GUILayout.Box(task);
                 }
 
                 // answer = GUILayout.Toggle(answer, "Ответ верный?");
@@ -91,11 +98,7 @@ namespace ITMO.Scripts
                             Level.CurrentLevelName = Level.CurrentLevelNode.Value;
                             Server.Send(Level.GetLevelPath(Level.CurrentLevelName));
                         }
-                        else
-                        {
-                            manager.GotoScene(scene);
-                            app.GetComponent<App>().Disconnect();
-                        }
+                        else DisconnectAndReturn();
                     }
 
                 if (Level.CurrentLevelName != null)
@@ -112,18 +115,10 @@ namespace ITMO.Scripts
                             Level.CurrentLevelName = Level.CurrentLevelNode.Value;
                             Server.Send(Level.GetLevelPath(Level.CurrentLevelName));
                         }
-                        else
-                        {
-                            manager.GotoScene(scene);
-                            app.GetComponent<App>().Disconnect();
-                        }
+                        else DisconnectAndReturn();
                     }
 
-                if (GUILayout.Button("Disconnect"))
-                {
-                    manager.GotoScene(scene);
-                    app.GetComponent<App>().Disconnect();
-                }
+                if (GUILayout.Button("Disconnect")) DisconnectAndReturn();
             }
 
             GUILayout.EndArea();
@@ -132,6 +127,13 @@ namespace ITMO.Scripts
             // GUI.Label(new Rect(16 * 2 + 192, 16, 192, 100), $"Radius {EyeInteraction.VisibilityRadius}");
             // EyeInteraction.VisibilityRadius = (int) GUI.HorizontalSlider(new Rect(16 * 2 + 192, 16 * 2, 192, 100),
             //     EyeInteraction.VisibilityRadius, 0.0F, 100.0F);
+        }
+
+        private void DisconnectAndReturn()
+        {
+            levelToShow = ChooseMsg;
+            manager.GotoScene(scene);
+            app.GetComponent<App>().Disconnect();
         }
 
         // private void GetAnswers()

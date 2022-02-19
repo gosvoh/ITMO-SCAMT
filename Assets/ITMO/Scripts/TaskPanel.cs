@@ -10,7 +10,7 @@ namespace ITMO.Scripts
 
         private void Update()
         {
-            if (Level.CurrentLevelName == null || !Level.AllTasks.TryGetValue(Level.CurrentLevelName, out var task))
+            if (Level.CurrentLevelName == null || !Level.GetLevelTask(Level.CurrentLevelName, out var task))
             {
                 panel.SetActive(false);
                 return;

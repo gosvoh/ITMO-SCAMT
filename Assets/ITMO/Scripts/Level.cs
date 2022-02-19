@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -12,35 +13,42 @@ namespace ITMO.Scripts
         /// Key - name of the .pdb file <br />
         /// Value - path to the .pdb file
         /// </summary>
-        private static readonly Dictionary<string, string> AllLevels = new Dictionary<string, string>();
+        private static Dictionary<string, string> _allLevels;
 
         /// <summary>
         /// Dictionary that contains all level's tasks. <br />
         /// Key - name of the .pdb file <br />
         /// Value - content of the *level_name*.txt
         /// </summary>
-        public static readonly Dictionary<string, string> AllTasks = new Dictionary<string, string>();
+        private static Dictionary<string, string> _allTasks;
 
-        public static LinkedList<string> LevelNamesList = new LinkedList<string>();
+        public static LinkedList<string> LevelNamesList;
 
-        public static readonly Dictionary<string, LinkedList<string>> DifficultyLevels =
-            new Dictionary<string, LinkedList<string>>
-            {
-                ["Easy"] = new LinkedList<string>(),
-                ["Medium"] = new LinkedList<string>(),
-                ["Hard"] = new LinkedList<string>(),
-                ["Hardcore"] = new LinkedList<string>()
-            };
+        public static Dictionary<string, LinkedList<string>> DifficultyLevels;
 
         public static string CurrentLevelName;
 
         public static LinkedListNode<string> CurrentLevelNode;
 
-        public static void Initialize() => GetFiles();
+        public static void Initialize()
+        {
+            try
+            {
+                GetFiles();
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+        }
 
         private static void GetFiles()
         {
-            var mainDir = Application.streamingAssetsPath + "\\Molecules";
+            _allLevels = new Dictionary<string, string>();
+            _allTasks = new Dictionary<string, string>();
+            LevelNamesList = new LinkedList<string>();
+            DifficultyLevels = new Dictionary<string, LinkedList<string>>();
+            var mainDir = $"{Application.dataPath}\\..\\Molecules";
             var dirFiles = Directory.EnumerateFiles(mainDir);
             foreach (var s in dirFiles)
             {
@@ -48,17 +56,19 @@ namespace ITMO.Scripts
                 switch (fn[fn.Length - 1])
                 {
                     case "pdb":
-                        AllLevels.Add(fn[0], s);
+                        _allLevels.Add(fn[0], s);
                         break;
                     case "txt":
                         string line;
-                        if ((line = File.ReadAllLines(s)[0]).Length > 0) AllTasks.Add(fn[0], line);
+                        if ((line = File.ReadAllLines(s)[0]).Length > 0) _allTasks.Add(fn[0], line);
                         break;
                 }
             }
 
-            foreach (var level in DifficultyLevels.Keys)
+            var dirs = Directory.EnumerateDirectories(mainDir).Select(s => new DirectoryInfo(s).Name);
+            foreach (var level in dirs)
             {
+                if (!DifficultyLevels.ContainsKey(level)) DifficultyLevels[level] = new LinkedList<string>();
                 dirFiles = Directory.EnumerateFiles($"{mainDir}\\{level}\\");
                 foreach (var s in dirFiles)
                 {
@@ -66,23 +76,23 @@ namespace ITMO.Scripts
                     switch (fn[fn.Length - 1])
                     {
                         case "pdb":
-                            AllLevels[fn[0]] = s;
+                            _allLevels[fn[0]] = s;
                             DifficultyLevels[level].AddLast(s);
                             break;
                         case "txt":
                             string line;
                             if ((line = File.ReadAllLines(s)[0]).Length > 0) /*_tasks.Add(fn[0], line);*/
-                                AllTasks[fn[0]] = line;
+                                _allTasks[fn[0]] = line;
                             break;
                     }
                 }
             }
 
-            LevelNamesList = new LinkedList<string>(AllLevels.Keys);
+            LevelNamesList = new LinkedList<string>(_allLevels.Keys);
         }
 
-        public static string GetLevelPath(string lvl) => AllLevels[lvl];
+        public static string GetLevelPath(string lvl) => _allLevels[lvl];
 
-        public static string GetLevelTask(string lvl) => AllTasks[lvl];
+        public static bool GetLevelTask(string lvl, out string task) => _allTasks.TryGetValue(lvl, out task);
     }
 }

@@ -16,7 +16,7 @@
     "precompiledReferences": [
         "Essd.dll",
         "Newtonsoft.Json.dll",
-        "Narupa.Protocol.dll"
+        "Valve.Newtonsoft.Json.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],

@@ -12,10 +12,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{13309CA4-0356-FBFF-191B-BA1484188040}</ProjectGuid>
+    <ProjectGuid>{A13FC990-046E-2A72-9A25-1FCC98946071}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Narupa.Grpc</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor-firstpass</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -58,32 +58,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Conversions.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Frame\FrameConversions.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Frame\FrameConverter.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\GrpcClient.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\GrpcConnection.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Multiplayer\MultiplayerAvatar.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Multiplayer\MultiplayerAvatars.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Multiplayer\MultiplayerClient.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Multiplayer\MultiplayerCollection.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Multiplayer\MultiplayerResource.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Multiplayer\MultiplayerResourceLockState.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Multiplayer\MultiplayerSession.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Stream\AsyncEnumeratorExtensions.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Stream\BackgroundIncomingStreamReceiver.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Stream\IncomingStream.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Stream\OutgoingStream.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Stream\OutgoingStreamCollection.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Trajectory\TrajectoryClient.cs" />
-     <Compile Include="Assets\Plugins\Narupa\Grpc\Trajectory\TrajectorySession.cs" />
-     <None Include="Assets\Plugins\Narupa\Grpc\Narupa.Grpc.asmdef" />
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
+     <Compile Include="Assets\Plugins\Narupa\Core\Editor\AssemblyExplorerWindow.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_AutoEnableVR.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_Editor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_Preferences.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_UnitySettingsWindow.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_Update.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_UpdateModeEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_CopyExampleInputFiles.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_ActionManifest_Manager.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_ActionSetPropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_Boolean_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_GenericPropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_In_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_Out_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_Pose_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_Single_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_Skeleton_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_Vector2_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_Vector3_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Action_Vibration_PropertyEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_EditorWindow.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Generator.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_LiveWindow.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_PostProcessBuild.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Skeleton_PoserEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Visualisation\Editor\ElementColorAssignmentPropertyDrawer.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Visualisation\Editor\GraphVizVisualisationGraph.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Visualisation\Editor\VisualisationComponentEditor.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Visualisation\Editor\VisualisationPropertyDrawer.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Visualisation\Editor\VisualiserComponentsPropertyDrawer.cs" />
+     <Compile Include="Assets\Plugins\Narupa\Visualisation\Editor\VisualiserPrefabEnvironment.cs" />
+     <Compile Include="Assets\Plugins\NarupaIMD\Editor\ServerMenuCommands.cs" />
+     <Compile Include="Assets\Plugins\NarupaIMD\Editor\SharedStateWindow.cs" />
+     <None Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Input\Editor\SteamVR_Input_Editor.asmdef" />
+     <None Include="Assets\Plugins\Narupa\Core\Editor\Narupa.Core.Editor.asmdef" />
+     <None Include="Assets\Plugins\NarupaIMD\Editor\NarupaIMD.Editor.asmdef" />
+     <None Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_Editor.asmdef" />
+     <None Include="Assets\Plugins\Narupa\Visualisation\Editor\Narupa.Visualisation.Editor.asmdef" />
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
  </Reference>
@@ -311,6 +326,9 @@
  </Reference>
  <Reference Include="Newtonsoft.Json">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -668,13 +686,9 @@
  </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Narupa.Core.csproj">
-      <Project>{C2831D70-31CF-B82A-35CE-A806255C3590}</Project>
-      <Name>Narupa.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="Narupa.Frame.csproj">
-      <Project>{BAC483FC-1BA0-745E-93AD-97092FC91107}</Project>
-      <Name>Narupa.Frame</Name>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{22AFAF37-6C7D-F6B9-7C14-B21DBF3151ED}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

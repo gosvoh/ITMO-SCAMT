@@ -6,6 +6,7 @@ using System.Threading;
 using NarupaIMD;
 using UnityEngine;
 using UnityEngine.Events;
+using Debug = UnityEngine.Debug;
 
 namespace ITMO.Scripts
 {
@@ -44,25 +45,32 @@ namespace ITMO.Scripts
 
         private void RunServerProcess()
         {
-            serverProcess = new Process
+            try
             {
-                StartInfo =
+                serverProcess = new Process
                 {
+                    StartInfo =
+                    {
 #if UNITY_EDITOR
-                    FileName = "C:\\Users\\gosvoh\\Unity\\run_server.bat",
-                    WorkingDirectory = "C:\\Users\\gosvoh\\Unity\\",
+                        FileName = "C:\\Users\\gosvoh\\Unity\\run_server.bat",
+                        WorkingDirectory = "C:\\Users\\gosvoh\\Unity\\",
 #else
                     FileName = Application.dataPath + "\\..\\run_server.bat",
                     WorkingDirectory = Application.dataPath + "\\..\\",
 #endif
-                    UseShellExecute = false,
-                    RedirectStandardInput = true,
-                    CreateNoWindow = true
-                }
-            };
+                        UseShellExecute = false,
+                        RedirectStandardInput = true,
+                        CreateNoWindow = true
+                    }
+                };
 
 
-            serverProcess.Start();
+                serverProcess.Start();
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
 
         private static bool TestTcpConnection(string host = "127.0.0.1", int port = 7777,
