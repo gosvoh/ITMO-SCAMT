@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NarupaIMD.UI;
 using UnityEngine;
@@ -59,7 +60,7 @@ namespace ITMO.Scripts
                 if (showDropdown)
                 {
                     Level.Initialize();
-                    
+
                     scrollViewVector = GUILayout.BeginScrollView(scrollViewVector, GUILayout.MaxHeight(200));
 
                     if (list.Length == 0) GUILayout.Box(EmptyMsg);
@@ -120,6 +121,14 @@ namespace ITMO.Scripts
 
                 if (GUILayout.Button("Disconnect")) DisconnectAndReturn();
             }
+            
+            GUILayout.Box($"Точность распознавания: {StupidExpressionClassifier.Quality:F}");
+            StupidExpressionClassifier.Quality = GUILayout.HorizontalSlider(
+                StupidExpressionClassifier.Quality,
+                0.00f,
+                1.00f
+            );
+            StupidExpressionClassifier.Quality = (float) Math.Round(StupidExpressionClassifier.Quality, 2);
 
             GUILayout.EndArea();
 

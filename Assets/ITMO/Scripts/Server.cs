@@ -102,11 +102,17 @@ namespace ITMO.Scripts
             }
 
             ServerConnected = true;
+            InitLoggers();
+            EyeInteraction.EyeGazeChangedCounter = 0;
+            Reference.Stopwatch.Restart();
+        }
+
+        private void InitLoggers()
+        {
             EyeInteraction.Logger = new Logger();
             EyeTracker.Logger = new Logger("_eyeTracker");
             FaceTracker.Logger = new Logger("_faceTracker");
-            EyeInteraction.EyeGazeChangedCounter = 0;
-            Reference.Stopwatch.Restart();
+            StupidExpressionClassifier.Logger = new Logger("_emotions");
         }
 
         public static void Send(string pathToMolecule, string host = "127.0.0.1", int port = 7777)

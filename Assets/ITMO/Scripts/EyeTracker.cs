@@ -13,7 +13,7 @@ namespace ITMO.Scripts
         private bool logHeaderSet;
         private int counter = -1;
 
-        private static Dictionary<EyeShape_v2, float> _shapes;
+        internal static Dictionary<EyeShape_v2, float> Shapes;
 
         private void Start()
         {
@@ -31,7 +31,7 @@ namespace ITMO.Scripts
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
                 SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
 
-            SRanipal_Eye_v2.GetEyeWeightings(out _shapes);
+            SRanipal_Eye_v2.GetEyeWeightings(out Shapes);
             
             var sb = new StringBuilder();
             if (!logHeaderSet)
@@ -44,7 +44,7 @@ namespace ITMO.Scripts
                 logHeaderSet = true;
             }
             sb.Append(DateTime.Now.ToString("HH:mm:ss.fff")).Append("|");
-            foreach (var value in _shapes.Values) sb.Append($"{value}|");
+            foreach (var value in Shapes.Values) sb.Append($"{value}|");
             SRanipal_Eye_v2.GetPupilDiameter(EyeIndex.LEFT, out var lDiam);
             SRanipal_Eye_v2.GetPupilDiameter(EyeIndex.RIGHT, out var rDiam);
             sb.Append($"{lDiam}|{rDiam}");

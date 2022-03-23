@@ -11,8 +11,9 @@ namespace ITMO.Scripts
         public static Logger Logger;
 
         private int counter = -1;
-        private Dictionary<LipShape_v2, float> shapes;
         private bool logHeaderSet;
+
+        internal static Dictionary<LipShape_v2, float> Shapes;
 
         private void Start()
         {
@@ -29,8 +30,8 @@ namespace ITMO.Scripts
 
             if (SRanipal_Lip_Framework.Status != SRanipal_Lip_Framework.FrameworkStatus.WORKING) return;
 
-            SRanipal_Lip_v2.GetLipWeightings(out shapes);
-            
+            SRanipal_Lip_v2.GetLipWeightings(out Shapes);
+
             var sb = new StringBuilder();
             if (!logHeaderSet)
             {
@@ -41,8 +42,9 @@ namespace ITMO.Scripts
                 sb.Clear();
                 logHeaderSet = true;
             }
+
             sb.Append(DateTime.Now.ToString("HH:mm:ss.fff")).Append("|");
-            foreach (var value in shapes.Values) sb.Append($"{value}|");
+            foreach (var value in Shapes.Values) sb.Append($"{value}|");
             sb.Remove(sb.Length - 1, 1);
             Logger.AddInfo(sb.ToString());
             Logger.WriteInfo();
