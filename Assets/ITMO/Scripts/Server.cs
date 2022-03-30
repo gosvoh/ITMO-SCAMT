@@ -51,13 +51,9 @@ namespace ITMO.Scripts
                 {
                     StartInfo =
                     {
-#if UNITY_EDITOR
-                        FileName = "C:\\Users\\gosvoh\\Unity\\run_server.bat",
-                        WorkingDirectory = "C:\\Users\\gosvoh\\Unity\\",
-#else
-                    FileName = Application.dataPath + "\\..\\run_server.bat",
-                    WorkingDirectory = Application.dataPath + "\\..\\",
-#endif
+                        FileName = Application.dataPath + "\\..\\run_server.bat",
+                        WorkingDirectory = Application.dataPath + "\\..\\",
+
                         UseShellExecute = false,
                         RedirectStandardInput = true,
                         CreateNoWindow = true
