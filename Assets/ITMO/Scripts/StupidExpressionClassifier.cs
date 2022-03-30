@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using ViveSR.anipal.Eye;
@@ -11,11 +12,8 @@ namespace ITMO.Scripts
         public static Logger Logger;
 
         public static float Quality = 0.3f;
-        public TMP_Text text;
 
-        public SkinnedMeshRenderer meshRenderer;
-
-        private Emotions currentEmotion = Emotions.Neutral;
+        public static Emotions CurrentEmotion = Emotions.Neutral;
         private Emotions prevEmotion = Emotions.Neutral;
 
         private readonly Stopwatch stopwatch = new Stopwatch();
@@ -25,7 +23,7 @@ namespace ITMO.Scripts
         private void EventHandler()
         {
             if (Logger == null) return;
-            Logger.AddInfo(currentEmotion.ToString());
+            Logger.AddInfo(CurrentEmotion.ToString());
             Logger.WriteInfo();
         }
 
@@ -76,99 +74,58 @@ namespace ITMO.Scripts
          */
         private void FixedUpdate()
         {
-            if (!Server.ServerConnected || FaceTracker.Shapes == null || EyeTracker.Shapes == null)
-            {
-                if (text.enabled) text.enabled = false;
-                return;
-            }
-
-            if (!text.enabled) text.enabled = true;
-
-            /*if (meshRenderer.GetBlendShapeWeight(27) / 100 > q &&
-                meshRenderer.GetBlendShapeWeight(33) / 100 > q)
-            {
-                currentEmotion = Emotions.Surprise;
-                /* Страх
-                 * 1+2+4+5*+20*+25, 26, или 27
-                 * 1+2+4+5*+25, 26, или 27
-                 #1#
-                if ((!stopwatch.IsRunning || stopwatch.ElapsedMilliseconds < 1000) &&
-                    (meshRenderer.GetBlendShapeWeight(3) / 100 < q || meshRenderer.GetBlendShapeWeight(14) / 100 < q ||
-                     meshRenderer.GetBlendShapeWeight(15) / 100 < q)) return;
-                stopwatch.Stop();
-                stopwatch.Reset();
-                currentEmotion = Emotions.Fear;
-            }
-            else if (meshRenderer.GetBlendShapeWeight(12) / 100 > q &&
-                     meshRenderer.GetBlendShapeWeight(13) / 100 > q)
-                currentEmotion = Emotions.Joy;
-            else if (meshRenderer.GetBlendShapeWeight(14) / 100 > q &&
-                     meshRenderer.GetBlendShapeWeight(15) / 100 > q)
-            {
-                currentEmotion = Emotions.Sadness;
-            }
-            else if (meshRenderer.GetBlendShapeWeight(38) / 100 > q &&
-                     meshRenderer.GetBlendShapeWeight(19) / 100 > q &&
-                     meshRenderer.GetBlendShapeWeight(20) / 100 > q)
-                currentEmotion = Emotions.Angry;
-            else currentEmotion = Emotions.Neutral;*/
+            if (!Server.ServerConnected || FaceTracker.Shapes is null || EyeTracker.Shapes is null) return;
 
             if (EyeTracker.Shapes[EyeShape_v2.Eye_Left_Wide] > Quality &&
                 EyeTracker.Shapes[EyeShape_v2.Eye_Right_Wide] > Quality)
             {
-                if (currentEmotion != Emotions.Surprise && currentEmotion != Emotions.Fear)
+                if (CurrentEmotion != Emotions.Surprise && CurrentEmotion != Emotions.Fear)
                     stopwatch.Start();
-                currentEmotion = Emotions.Surprise;
+                CurrentEmotion = Emotions.Surprise;
                 if ((!stopwatch.IsRunning || stopwatch.ElapsedMilliseconds < 1000) &&
                     (FaceTracker.Shapes[LipShape_v2.Jaw_Open] < Quality ||
                      FaceTracker.Shapes[LipShape_v2.Mouth_Sad_Left] < Quality ||
                      FaceTracker.Shapes[LipShape_v2.Mouth_Sad_Right] < Quality)) return;
                 stopwatch.Stop();
                 stopwatch.Reset();
-                currentEmotion = Emotions.Fear;
+                CurrentEmotion = Emotions.Fear;
             }
             else if (FaceTracker.Shapes[LipShape_v2.Mouth_Smile_Left] > Quality &&
                      FaceTracker.Shapes[LipShape_v2.Mouth_Smile_Right] > Quality)
             {
-                currentEmotion = Emotions.Joy;
+                CurrentEmotion = Emotions.Joy;
             }
             else if (FaceTracker.Shapes[LipShape_v2.Mouth_Sad_Left] > Quality &&
                      FaceTracker.Shapes[LipShape_v2.Mouth_Sad_Right] > Quality)
             {
-                currentEmotion = Emotions.Sadness;
+                CurrentEmotion = Emotions.Sadness;
             }
             else if (EyeTracker.Shapes[EyeShape_v2.Eye_Frown] > Quality &&
                      FaceTracker.Shapes[LipShape_v2.Mouth_Upper_UpLeft] > Quality &&
                      FaceTracker.Shapes[LipShape_v2.Mouth_Upper_UpRight] > Quality)
             {
-                currentEmotion = Emotions.Angry;
+                CurrentEmotion = Emotions.Angry;
             }
             else
             {
-                currentEmotion = Emotions.Neutral;
+                CurrentEmotion = Emotions.Neutral;
             }
 
-            text.text = currentEmotion.ToString();
-
-            if (currentEmotion == prevEmotion) return;
+            if (CurrentEmotion == prevEmotion) return;
             if (Logger is null) return;
-            Logger.AddInfo(currentEmotion.ToString());
+            Logger.AddInfo($"[{DateTime.Now}] {CurrentEmotion.ToString()}");
             Logger.WriteInfo();
-            prevEmotion = currentEmotion;
-
-            /*if (EyeTracker.Shapes[EyeShape_v2.Eye_Left_Wide] > 0.2 &&
-                EyeTracker.Shapes[EyeShape_v2.Eye_Right_Wide] > 0.2) text.text = "Surprise";
-            else text.text = "Neutral";*/
+            prevEmotion = CurrentEmotion;
         }
+    }
 
-        private enum Emotions
-        {
-            Surprise,
-            Fear,
-            Joy,
-            Sadness,
-            Angry,
-            Neutral
-        }
+    public enum Emotions
+    {
+        Surprise,
+        Fear,
+        Joy,
+        Sadness,
+        Angry,
+        Neutral
     }
 }
