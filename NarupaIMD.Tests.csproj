@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{72FF527F-AF56-97FF-4940-7945306C99B5}</ProjectGuid>
+    <ProjectGuid>{93CFC97F-E7B8-163B-A45B-050368908FC7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>NarupaIMD.Tests</AssemblyName>
@@ -65,16 +65,16 @@
      <Compile Include="Assets\Plugins\NarupaIMD\Tests\TryParseElementTests.cs" />
      <None Include="Assets\Plugins\NarupaIMD\Tests\NarupaIMD.Tests.asmdef" />
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -263,7 +263,7 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -622,11 +622,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="NarupaXR.csproj">
-      <Project>{7A657760-A640-7A3A-EEDC-07DCFA673F47}</Project>
+      <Project>{096C799B-25F6-0C38-7DE8-1A1D3D12724C}</Project>
       <Name>NarupaXR</Name>
     </ProjectReference>
     <ProjectReference Include="Narupa.Core.csproj">
-      <Project>{C2831D70-31CF-B82A-35CE-A806255C3590}</Project>
+      <Project>{B7BF4DC3-0957-24FD-8A55-BC673C5B10FD}</Project>
       <Name>Narupa.Core</Name>
     </ProjectReference>
   </ItemGroup>

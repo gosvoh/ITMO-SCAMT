@@ -130,8 +130,13 @@ namespace ITMO.Scripts
             );
             StupidExpressionClassifier.Quality = (float) Math.Round(StupidExpressionClassifier.Quality, 2);
 
-            if (Server.ServerConnected) GUILayout.Box(StupidExpressionClassifier.CurrentEmotion.ToString());
-            
+            if (Server.ServerConnected)
+            {
+                GUILayout.Box(StupidExpressionClassifier.CurrentEmotion.ToString());
+                GUILayout.Box($"Частота: {EyeInteraction.EyeGazeChangedCounter}");
+                GUILayout.Box($"Время: {Reference.Stopwatch.Elapsed.TotalSeconds:000}с");
+            }
+
             GUILayout.EndArea();
         }
 

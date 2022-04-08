@@ -28,8 +28,7 @@ namespace ITMO.Scripts
             counter++;
             if (counter % 10 != 0) return;
 
-            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
-                SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
+            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING) return;
 
             SRanipal_Eye_v2.GetEyeWeightings(out Shapes);
             

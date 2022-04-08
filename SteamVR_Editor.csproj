@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{FAEB584D-9813-3327-844D-703E21E1EDA9}</ProjectGuid>
+    <ProjectGuid>{52934A39-46C4-361E-241A-57B428D6D286}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>SteamVR_Editor</AssemblyName>
@@ -68,16 +68,16 @@
      <Compile Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_UpdateModeEditor.cs" />
      <None Include="Assets\Plugins\Narupa\Dependencies\SteamVR\Editor\SteamVR_Editor.asmdef" />
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -266,49 +266,49 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Castle.Core">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Castle.Core.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Castle.Core.dll</HintPath>
  </Reference>
  <Reference Include="Essd">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Essd.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Essd.dll</HintPath>
  </Reference>
  <Reference Include="Google.Protobuf">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Google.Protobuf.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Google.Protobuf.dll</HintPath>
  </Reference>
  <Reference Include="Grpc.Core.Api">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Grpc.Core.Api.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Grpc.Core.Api.dll</HintPath>
  </Reference>
  <Reference Include="Grpc.Core">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Grpc.Core.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Grpc.Core.dll</HintPath>
  </Reference>
  <Reference Include="Narupa.Protocol">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Narupa.Protocol.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Narupa.Protocol.dll</HintPath>
  </Reference>
  <Reference Include="NSubstitute">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/NSubstitute.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/NSubstitute.dll</HintPath>
  </Reference>
  <Reference Include="System.Buffers">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Buffers.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Buffers.dll</HintPath>
  </Reference>
  <Reference Include="System.Memory">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Memory.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Memory.dll</HintPath>
  </Reference>
  <Reference Include="System.Runtime.CompilerServices.Unsafe">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Channels">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Threading.Channels.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Threading.Channels.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Tasks.Extensions">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Threading.Tasks.Extensions.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Threading.Tasks.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.1/Runtime/Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.2/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -667,7 +667,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SteamVR.csproj">
-      <Project>{217E8C86-73DE-8F2F-20C4-C90728FED325}</Project>
+      <Project>{25A97E1E-ED97-28BC-4FAB-B613035EA744}</Project>
       <Name>SteamVR</Name>
     </ProjectReference>
   </ItemGroup>

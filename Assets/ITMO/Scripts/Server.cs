@@ -87,15 +87,16 @@ namespace ITMO.Scripts
             }
         }
 
-        public void Connect()
+        public async void Connect()
         {
             if (ServerConnected) return;
-            for (var i = 0; i < 50; i++)
+            for (var i = 0; i < 5; i++)
             {
-                simulation.AutoConnect();
-                Thread.Sleep(100);
+                await simulation.AutoConnect();
                 if (simulation.gameObject.activeSelf) break;
             }
+            
+            if (!simulation.gameObject.activeSelf) return;
 
             ServerConnected = true;
             InitLoggers();

@@ -37,8 +37,19 @@ namespace ITMO.Scripts
             EyeGazeChangedCounter = 0;
         }
 
-        private void Update()
+        private void OnDisable() => Destroy(parent);
+
+        private void FixedUpdate()
         {
+            var frame = frameSource.CurrentFrame;
+            if (counter++ % 5 != 0) return;
+            if (frame?.ParticleCount != 0 && Spheres.Count != frame?.ParticleCount)
+            {
+                Destroy(parent);
+                Spheres.Clear();
+                CreateSphere(frame);
+            }
+            
             if (!Server.ServerConnected || Logger == null) return;
 
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
@@ -64,19 +75,6 @@ namespace ITMO.Scripts
                 Logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
                 Logger.WriteInfo();
             }
-        }
-
-        private void OnDisable() => Destroy(parent);
-
-        private void FixedUpdate()
-        {
-            var frame = frameSource.CurrentFrame;
-            // if (frame == null && Server.ServerConnected) GameObject.Find("App").GetComponent<App>().Disconnect();
-            if (counter++ % 10 != 0) return;
-            if (frame?.ParticleCount == 0 || Spheres.Count == frame?.ParticleCount) return;
-            Destroy(parent);
-            Spheres.Clear();
-            CreateSphere(frame);
         }
 
         private void CreateSphere(Frame frame)
