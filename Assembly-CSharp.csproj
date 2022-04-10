@@ -66,11 +66,11 @@
      <Compile Include="Assets\ITMO\Scripts\EyeInteraction.cs" />
      <Compile Include="Assets\ITMO\Scripts\EyeTracker.cs" />
      <Compile Include="Assets\ITMO\Scripts\FaceTracker.cs" />
+     <Compile Include="Assets\ITMO\Scripts\FaceTrackerSwitcher.cs" />
      <Compile Include="Assets\ITMO\Scripts\Info.cs" />
      <Compile Include="Assets\ITMO\Scripts\Level.cs" />
      <Compile Include="Assets\ITMO\Scripts\Logger.cs" />
      <Compile Include="Assets\ITMO\Scripts\Reference.cs" />
-     <Compile Include="Assets\ITMO\Scripts\RendererGenerator.cs" />
      <Compile Include="Assets\ITMO\Scripts\Server.cs" />
      <Compile Include="Assets\ITMO\Scripts\TaskPanel.cs" />
      <Compile Include="Assets\ViveSR\Scripts\Eye\SRanipal_Eye.cs" />
@@ -160,35 +160,29 @@
      <None Include="Assets\StreamingAssets\Molecules\medium\2_06.txt" />
      <None Include="Assets\StreamingAssets\Molecules\medium\2_04.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
- <Reference Include="UnityEditor.CacheServer">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.CacheServer.dll</HintPath>
+ <Reference Include="Unity.XR.Management">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
  </Reference>
- <Reference Include="Unity.ScriptableBuildPipeline.Editor">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+ <Reference Include="Unity.Subsystem.Registration">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.Subsystem.Registration.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Leopotam.Ecs">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Leopotam.Ecs.dll</HintPath>
- </Reference>
- <Reference Include="CodeCoverageTools.Editor">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/CodeCoverageTools.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.ResourceManager">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.ResourceManager.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Addressables.Editor">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.Addressables.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Postprocessing.Editor">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.XR.LegacyInputHelpers">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.XR.Management.Editor">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.XR.Management.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
@@ -199,20 +193,17 @@
  <Reference Include="Unity.Postprocessing.Runtime">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Localization">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.Localization.dll</HintPath>
+ <Reference Include="UnityEditor.SpatialTracking">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Addressables">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.Addressables.dll</HintPath>
- </Reference>
- <Reference Include="Unity.ScriptableBuildPipeline">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.ScriptableBuildPipeline.dll</HintPath>
+ <Reference Include="UnityEngine.SpatialTracking">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Localization.Editor">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.Localization.Editor.dll</HintPath>
+ <Reference Include="UnityEditor.XR.LegacyInputHelpers">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
@@ -434,7 +425,7 @@
  <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.2/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -796,13 +787,29 @@
       <Project>{A2C568B0-E4BB-8E9D-511C-98F0D116EC88}</Project>
       <Name>NarupaIMD.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="TobiiXREditor.csproj">
+      <Project>{D5C07E24-C204-0F9F-60AF-5E699391076F}</Project>
+      <Name>TobiiXREditor</Name>
+    </ProjectReference>
     <ProjectReference Include="Narupa.Frontend.csproj">
       <Project>{AB9AA5EA-19AC-D322-B7ED-D358C6EF9A89}</Project>
       <Name>Narupa.Frontend</Name>
     </ProjectReference>
+    <ProjectReference Include="TobiiXRSDK.csproj">
+      <Project>{337637D3-6761-4197-BC31-0E4983A30163}</Project>
+      <Name>TobiiXRSDK</Name>
+    </ProjectReference>
     <ProjectReference Include="Narupa.Visualisation.csproj">
       <Project>{542440E3-6DBC-9755-E440-88366131510D}</Project>
       <Name>Narupa.Visualisation</Name>
+    </ProjectReference>
+    <ProjectReference Include="GazeModifierEditor.csproj">
+      <Project>{EBEB560C-97B1-9F6D-617C-0180B3146A34}</Project>
+      <Name>GazeModifierEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="TobiiXRCore.csproj">
+      <Project>{BB41AE51-C9E9-B040-CD06-3ECBEAB20F9A}</Project>
+      <Name>TobiiXRCore</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Actions.csproj">
       <Project>{30A81977-E374-75F7-F404-4FE3DD420BA7}</Project>
@@ -811,6 +818,14 @@
     <ProjectReference Include="NarupaXR.csproj">
       <Project>{7A657760-A640-7A3A-EEDC-07DCFA673F47}</Project>
       <Name>NarupaXR</Name>
+    </ProjectReference>
+    <ProjectReference Include="TobiiXRInternalEditor.csproj">
+      <Project>{D16F763A-5883-2501-8147-929C72A5177F}</Project>
+      <Name>TobiiXRInternalEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="TobiiXRG2OM.csproj">
+      <Project>{702FAC68-337E-A62E-7C5D-249994A13ED8}</Project>
+      <Name>TobiiXRG2OM</Name>
     </ProjectReference>
     <ProjectReference Include="Narupa.Core.csproj">
       <Project>{C2831D70-31CF-B82A-35CE-A806255C3590}</Project>
@@ -823,6 +838,10 @@
     <ProjectReference Include="SteamVR_Input_Editor.csproj">
       <Project>{3DA9DCE2-3967-F3A3-4FE5-609212F0840A}</Project>
       <Name>SteamVR_Input_Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="TobiiXRDevTools.csproj">
+      <Project>{4C761764-4C9E-7658-8E30-A27BB0B7CFAA}</Project>
+      <Name>TobiiXRDevTools</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Editor.csproj">
       <Project>{FAEB584D-9813-3327-844D-703E21E1EDA9}</Project>

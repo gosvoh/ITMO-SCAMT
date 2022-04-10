@@ -33,9 +33,9 @@ namespace ViveSR
                 public bool EnableEyeDataCallback = false;
 
                 /// <summary>
-                /// Which version of eye prediction engine will be used, default is version 1.
+                /// Which version of eye prediction engine will be used, default is version 2.
                 /// </summary>
-                public SupportedEyeVersion EnableEyeVersion = SupportedEyeVersion.version1;
+                public SupportedEyeVersion EnableEyeVersion = SupportedEyeVersion.version2;
                 private static SRanipal_Eye_Framework Mgr = null;
                 public static SRanipal_Eye_Framework Instance
                 {

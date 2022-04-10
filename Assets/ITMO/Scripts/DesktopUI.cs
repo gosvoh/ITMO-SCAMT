@@ -121,12 +121,9 @@ namespace ITMO.Scripts
                 if (GUILayout.Button("Disconnect")) DisconnectAndReturn();
             }
 
+            FaceTrackerSwitcher.TobiiEnabled = GUILayout.Toggle(FaceTrackerSwitcher.TobiiEnabled, "Enable Tobii");
+            
             GUILayout.EndArea();
-
-            // if (!Server.ServerConnected) return;
-            // GUI.Label(new Rect(16 * 2 + 192, 16, 192, 100), $"Radius {EyeInteraction.VisibilityRadius}");
-            // EyeInteraction.VisibilityRadius = (int) GUI.HorizontalSlider(new Rect(16 * 2 + 192, 16 * 2, 192, 100),
-            //     EyeInteraction.VisibilityRadius, 0.0F, 100.0F);
         }
 
         private void DisconnectAndReturn()

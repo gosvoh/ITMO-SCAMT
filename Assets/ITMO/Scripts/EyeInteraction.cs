@@ -15,6 +15,7 @@ namespace ITMO.Scripts
         // public static int VisibilityRadius = 100;
         public static Logger Logger;
         public static int EyeGazeChangedCounter;
+        public static LayerMask PrefabLayer;
 
         private static int _id = -10;
         private static readonly List<GameObject> Spheres = new List<GameObject>();
@@ -24,11 +25,21 @@ namespace ITMO.Scripts
         private int counter = -1;
         private bool logHeaderSet;
 
-        private void Awake() => SetWalls();
+        private void Awake()
+        {
+            PrefabLayer = atomPrefab.layer;
+            Server.SendEvent.AddListener(SendEventHandler);
+            Server.ConnectEvent.AddListener(ConnectEventHandler);
+            SetWalls();
+        }
 
-        private void Start() => Server.SendEvent.AddListener(EventHandler);
-
-        private static void EventHandler()
+        private static void ConnectEventHandler()
+        {
+            Logger = new Logger();
+            Logger.AddInfo("timestamp|position|ID");
+        }
+        
+        private static void SendEventHandler()
         {
             if (Logger == null) return;
             Logger.AddInfo(
@@ -43,12 +54,6 @@ namespace ITMO.Scripts
 
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
                 SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
-
-            if (!logHeaderSet)
-            {
-                Logger.AddInfo("timestamp|position|ID");
-                logHeaderSet = true;
-            }
 
             foreach (var index in gazePriority)
             {

@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{ADD80C30-3620-F987-80B9-C6B4EFAF9F74}</ProjectGuid>
+    <ProjectGuid>{702FAC68-337E-A62E-7C5D-249994A13ED8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>TobiiXRG2OM</AssemblyName>
@@ -58,27 +58,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Plugins\Tobii.G2OM.Interop.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Plugins\Tobii.G2OM.UnityExtensionMethods.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_ColliderDataProvider.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_Context.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_ObjectDistinguisher.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_ObjectFinder.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_PostTicker.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_ColliderDataProvider.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_Context.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_ObjectDistinguisher.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_ObjectFinder.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_PostTicker.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IGazeFocusable.cs" />
-     <None Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\README.txt" />
-     <None Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\TobiiXRG2OM.asmdef" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Plugins\Tobii.G2OM.Interop.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Plugins\Tobii.G2OM.UnityExtensionMethods.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_ColliderDataProvider.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_Context.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_ObjectDistinguisher.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_ObjectFinder.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\G2OM_PostTicker.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_ColliderDataProvider.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_Context.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_ObjectDistinguisher.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_ObjectFinder.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IG2OM_PostTicker.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\Scripts\IGazeFocusable.cs" />
+     <None Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\README.txt" />
+     <None Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\G2OM\TobiiXRG2OM.asmdef" />
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -267,46 +267,46 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Castle.Core">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Castle.Core.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Castle.Core.dll</HintPath>
  </Reference>
  <Reference Include="Essd">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Essd.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Essd.dll</HintPath>
  </Reference>
  <Reference Include="Google.Protobuf">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Google.Protobuf.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Google.Protobuf.dll</HintPath>
  </Reference>
  <Reference Include="Grpc.Core.Api">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Grpc.Core.Api.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Grpc.Core.Api.dll</HintPath>
  </Reference>
  <Reference Include="Grpc.Core">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Grpc.Core.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Grpc.Core.dll</HintPath>
  </Reference>
  <Reference Include="Narupa.Protocol">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Narupa.Protocol.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Narupa.Protocol.dll</HintPath>
  </Reference>
  <Reference Include="NSubstitute">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/NSubstitute.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/NSubstitute.dll</HintPath>
  </Reference>
  <Reference Include="System.Buffers">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Buffers.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Buffers.dll</HintPath>
  </Reference>
  <Reference Include="System.Memory">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Memory.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Memory.dll</HintPath>
  </Reference>
  <Reference Include="System.Runtime.CompilerServices.Unsafe">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Channels">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Threading.Channels.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Threading.Channels.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Tasks.Extensions">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Threading.Tasks.Extensions.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Threading.Tasks.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.2/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

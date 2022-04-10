@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{3E213562-4D9C-C827-08EC-7DF1C3301D38}</ProjectGuid>
+    <ProjectGuid>{BB41AE51-C9E9-B040-CD06-3ECBEAB20F9A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>TobiiXRCore</AssemblyName>
@@ -58,50 +58,50 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\CameraHelper.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\CompilerFlagAttribute.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\ControllerManager.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\OpenVRControllerAdapter.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\PicoControllerAdapter.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\UpdateControllerPosition.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\XRInputSystemControllerAdapter.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Convergence.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\EyeTrackingFilterBase.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\HandEyeCoordination\Plugins\Tobii.HEC.Interop.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Helpers\XRDisplaySubSystemHelper.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\IEyeTrackingProvider.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\ProviderDisplayNameAttribute.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\CameraPoseHistory.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\CoordinatesHelper.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\EyeTrackingDataHelper.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Mouse\MouseProvider.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\NoseDirection\NoseDirectionProvider.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Pico\PicoXRProvider.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\ConnectionHelper.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\LicenseParser.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\Plugins\Tobii.StreamEngine.Interop.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineContext.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineDataMapper.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineInteropWrapper.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineTracker.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineTracker_Description.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\TobiiProvider.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Vive\ViveProvider.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\SupportedPlatformAttribute.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXRAdvanced.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXR_AdvancedEyeTrackingData.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXR_EyeTrackingData.cs" />
-     <Compile Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXR_TrackingSpace.cs" />
-     <None Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXRCore.asmdef" />
-     <None Include="C:\Users\4\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Vive\readme.txt" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\CameraHelper.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\CompilerFlagAttribute.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\ControllerManager.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\OpenVRControllerAdapter.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\PicoControllerAdapter.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\UpdateControllerPosition.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Controller\XRInputSystemControllerAdapter.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Convergence.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\EyeTrackingFilterBase.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\HandEyeCoordination\Plugins\Tobii.HEC.Interop.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Helpers\XRDisplaySubSystemHelper.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\IEyeTrackingProvider.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\ProviderDisplayNameAttribute.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\CameraPoseHistory.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\CoordinatesHelper.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\EyeTrackingDataHelper.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Mouse\MouseProvider.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\NoseDirection\NoseDirectionProvider.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Pico\PicoXRProvider.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\ConnectionHelper.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\LicenseParser.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\Plugins\Tobii.StreamEngine.Interop.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineContext.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineDataMapper.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineInteropWrapper.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineTracker.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\StreamEngineTracker_Description.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Tobii\TobiiProvider.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Vive\ViveProvider.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\SupportedPlatformAttribute.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXRAdvanced.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXR_AdvancedEyeTrackingData.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXR_EyeTrackingData.cs" />
+     <Compile Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXR_TrackingSpace.cs" />
+     <None Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\TobiiXRCore.asmdef" />
+     <None Include="C:\Users\gosvoh\Downloads\TobiiXRSDK_3.0.1.179\Runtime\Core\Providers\Vive\readme.txt" />
  <Reference Include="Unity.XR.Management">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -290,46 +290,46 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Castle.Core">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Castle.Core.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Castle.Core.dll</HintPath>
  </Reference>
  <Reference Include="Essd">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Essd.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Essd.dll</HintPath>
  </Reference>
  <Reference Include="Google.Protobuf">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Google.Protobuf.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Google.Protobuf.dll</HintPath>
  </Reference>
  <Reference Include="Grpc.Core.Api">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Grpc.Core.Api.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Grpc.Core.Api.dll</HintPath>
  </Reference>
  <Reference Include="Grpc.Core">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Grpc.Core.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Grpc.Core.dll</HintPath>
  </Reference>
  <Reference Include="Narupa.Protocol">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Narupa.Protocol.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/Narupa.Protocol.dll</HintPath>
  </Reference>
  <Reference Include="NSubstitute">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/NSubstitute.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/NSubstitute.dll</HintPath>
  </Reference>
  <Reference Include="System.Buffers">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Buffers.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Buffers.dll</HintPath>
  </Reference>
  <Reference Include="System.Memory">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Memory.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Memory.dll</HintPath>
  </Reference>
  <Reference Include="System.Runtime.CompilerServices.Unsafe">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Channels">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Threading.Channels.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Threading.Channels.dll</HintPath>
  </Reference>
  <Reference Include="System.Threading.Tasks.Extensions">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/System.Threading.Tasks.Extensions.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/System.Threading.Tasks.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="Valve.Newtonsoft.Json">
- <HintPath>D:/htc-vive-pro-eye-master/htc-vive-pro-eye-master/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Assets/Plugins/Narupa/Dependencies/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+ </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>C:/Users/gosvoh/Unity/ITMO-SCAMT/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.2/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
