@@ -101,8 +101,7 @@ namespace ITMO.Scripts
             if (!simulation.gameObject.activeSelf) throw new ServerException("Cannot connect to Narupa server");
 
             ServerConnected = true;
-            EyeTracker.Logger = new Logger("_eyeTracker");
-            FaceTracker.Logger = new Logger("_faceTracker");
+            ConnectEvent.Invoke();
             EyeInteraction.EyeGazeChangedCounter = 0;
             Reference.Stopwatch.Restart();
         }

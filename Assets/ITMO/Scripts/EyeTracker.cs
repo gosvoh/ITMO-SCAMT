@@ -19,6 +19,17 @@ namespace ITMO.Scripts
         {
             if (!SRanipal_Eye_Framework.Instance.EnableEye) enabled = false;
             Server.SendEvent.AddListener(EventHandler);
+            Server.ConnectEvent.AddListener(ConnectEventHandler);
+        }
+
+        private static void ConnectEventHandler()
+        {
+            Logger = new Logger("_eyeTracker");
+            var sb = new StringBuilder();
+            sb.Append("timestamp|");
+            foreach (var value in Enum.GetNames(typeof(EyeShape_v2))) sb.Append(value).Append('|');
+            sb.Append("l_pupil_diameter|r_pupil_diameter");
+            Logger.AddInfo(sb.ToString());
         }
 
         private void FixedUpdate()
@@ -32,22 +43,13 @@ namespace ITMO.Scripts
                 SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
 
             SRanipal_Eye_v2.GetEyeWeightings(out _shapes);
-            
+
             var sb = new StringBuilder();
-            if (!logHeaderSet)
-            {
-                sb.Append("timestamp|");
-                foreach (var value in Enum.GetNames(typeof(EyeShape_v2))) sb.Append($"{value}|");
-                sb.Append("l_pupil_diameter|r_pupil_diameter");
-                Logger.AddInfo(sb.ToString());
-                sb.Clear();
-                logHeaderSet = true;
-            }
             sb.Append(DateTime.Now.ToString("HH:mm:ss.fff")).Append("|");
-            foreach (var value in _shapes.Values) sb.Append($"{value}|");
+            foreach (var value in _shapes.Values) sb.Append(value).Append('|');
             SRanipal_Eye_v2.GetPupilDiameter(EyeIndex.LEFT, out var lDiam);
             SRanipal_Eye_v2.GetPupilDiameter(EyeIndex.RIGHT, out var rDiam);
-            sb.Append($"{lDiam}|{rDiam}");
+            sb.Append(lDiam).Append('|').Append(rDiam);
             Logger.AddInfo(sb.ToString());
             Logger.WriteInfo();
         }

@@ -12,33 +12,26 @@ namespace ITMO.Scripts
         [SerializeField] private SynchronisedFrameSource frameSource;
         [SerializeField] private GameObject atomPrefab;
 
-        // public static int VisibilityRadius = 100;
         public static Logger Logger;
         public static int EyeGazeChangedCounter;
         public static LayerMask PrefabLayer;
-
-        private static int _id = -10;
+        public static int LastID = -10;
+        
         private static readonly List<GameObject> Spheres = new List<GameObject>();
 
-        private readonly GazeIndex[] gazePriority = { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
+        // private readonly GazeIndex[] gazePriority = { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
         private GameObject parent;
         private int counter = -1;
         private bool logHeaderSet;
 
         private void Awake()
         {
-            PrefabLayer = atomPrefab.layer;
+            PrefabLayer = LayerMask.NameToLayer("GazeCollider");
             Server.SendEvent.AddListener(SendEventHandler);
             Server.ConnectEvent.AddListener(ConnectEventHandler);
             SetWalls();
         }
 
-        private static void ConnectEventHandler()
-        {
-            Logger = new Logger();
-            Logger.AddInfo("timestamp|position|ID");
-        }
-        
         private static void SendEventHandler()
         {
             if (Logger == null) return;
@@ -48,35 +41,35 @@ namespace ITMO.Scripts
             EyeGazeChangedCounter = 0;
         }
 
-        private void Update()
+        private static void ConnectEventHandler()
         {
-            if (!Server.ServerConnected || Logger == null) return;
-
-            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
-                SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
-
-            foreach (var index in gazePriority)
-            {
-                var layer = atomPrefab.layer;
-                var eyeFocus = SRanipal_Eye_v2.Focus(index, out _, out var focusInfo, 0,
-                    float.MaxValue, 1 << layer);
-                if (!eyeFocus) continue;
-                var info = focusInfo.transform.GetComponent<Info>();
-                if (info == null) break;
-                if (info.Index == _id) break;
-                _id = info.Index;
-                EyeGazeChangedCounter++;
-                Logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
-                Logger.WriteInfo();
-            }
+            Logger = new Logger();
+            Logger.AddInfo("API|timestamp|position|ID");
         }
 
-        private void OnDisable() => Destroy(parent);
+        // private void Update()
+        // {
+        //     if (!Server.ServerConnected || Logger == null) return;
+        //     if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING) return;
+        //
+        //     foreach (var index in gazePriority)
+        //     {
+        //         var eyeFocus = SRanipal_Eye_v2.Focus(index, out _, out var focusInfo, 0,
+        //             float.MaxValue, 1 << PrefabLayer);
+        //         if (!eyeFocus) continue;
+        //         var info = focusInfo.transform.GetComponent<Info>();
+        //         if (info == null) break;
+        //         if (info.Index == LastID) break;
+        //         LastID = info.Index;
+        //         EyeGazeChangedCounter++;
+        //         Logger.AddInfo($"SRanipal|{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
+        //         Logger.WriteInfo();
+        //     }
+        // }
 
         private void FixedUpdate()
         {
             var frame = frameSource.CurrentFrame;
-            // if (frame == null && Server.ServerConnected) GameObject.Find("App").GetComponent<App>().Disconnect();
             if (counter++ % 10 != 0) return;
             if (frame?.ParticleCount == 0 || Spheres.Count == frame?.ParticleCount) return;
             Destroy(parent);
@@ -125,5 +118,7 @@ namespace ITMO.Scripts
                 wallInfo.Obj = wall;
             }
         }
+
+        private void OnDisable() => Destroy(parent);
     }
 }
