@@ -11,21 +11,29 @@ namespace ITMO.Scripts
         [SerializeField] private GameObject app;
         [SerializeField] private UserInterfaceManager manager;
         [SerializeField] private GameObject scene;
-        private readonly bool answer = false;
 
         private const string ChooseMsg = "Choose level";
         private const string EmptyMsg = "Empty list of levels";
 
-        private readonly Dictionary<string, bool> answers = new Dictionary<string, bool>();
-        private string levelToShow = ChooseMsg;
-        private string[] list;
-        private Vector2 scrollViewVector = Vector2.zero;
-        private bool showDropdown;
+        private Dictionary<string, bool> _answers;
+        private bool _answer;
+
+        private string _levelToShow = ChooseMsg;
+        private string[] _list;
+        private Vector2 _scrollViewVector = Vector2.zero;
+        private bool _showDropdown;
 
         private void Awake()
         {
             Level.Initialize();
-            list = Level.LevelNamesList.ToArray();
+            _list = Level.LevelNamesList.ToArray();
+            Server.SendEvent.AddListener(SendEventHandler);
+        }
+
+        private void SendEventHandler()
+        {
+            if (_answers == null) _answers = new Dictionary<string, bool>();
+            _answer = false;
         }
 
         private void OnGUI()
@@ -36,18 +44,17 @@ namespace ITMO.Scripts
             {
                 if (GUILayout.Button("Start"))
                 {
-                    if (levelToShow.Equals(ChooseMsg))
+                    if (_levelToShow.Equals(ChooseMsg))
                     {
-                        var level = Level.DifficultyLevels.Keys.First();
-                        Server.Send(Level.DifficultyLevels[level].First());
-                        Level.CurrentLevelName = level;
-                        Level.CurrentLevelNode = Level.LevelNamesList.Find(level);
+                        Level.CurrentLevelNode = Level.LevelNamesList.First;
+                        Level.CurrentLevelName = Level.CurrentLevelNode.Value;
+                        Server.Send(Level.GetLevelPath(Level.CurrentLevelName));
                     }
                     else
                     {
-                        Server.Send(Level.GetLevelPath(levelToShow));
-                        Level.CurrentLevelName = levelToShow;
-                        Level.CurrentLevelNode = Level.LevelNamesList.Find(levelToShow);
+                        Server.Send(Level.GetLevelPath(_levelToShow));
+                        Level.CurrentLevelName = _levelToShow;
+                        Level.CurrentLevelNode = Level.LevelNamesList.Find(_levelToShow);
                     }
 
                     app.GetComponent<Server>().Connect();
@@ -55,27 +62,35 @@ namespace ITMO.Scripts
 
                 if (GUILayout.Button("Connect")) app.GetComponent<Server>().Connect();
                 if (GUILayout.Button("Exit")) app.GetComponent<App>().Quit();
-                if (GUILayout.Button(levelToShow)) showDropdown = !showDropdown;
+                if (GUILayout.Button(_levelToShow)) _showDropdown = !_showDropdown;
 
-                if (showDropdown)
+                if (_showDropdown)
                 {
                     Level.Initialize();
 
-                    scrollViewVector = GUILayout.BeginScrollView(scrollViewVector, GUILayout.MaxHeight(200));
+                    _scrollViewVector = GUILayout.BeginScrollView(_scrollViewVector, GUILayout.MaxHeight(200));
 
-                    if (list.Length == 0) GUILayout.Box(EmptyMsg);
+                    if (_list.Length == 0) GUILayout.Box(EmptyMsg);
 
-                    foreach (var s in list)
+                    foreach (var s in _list)
                     {
                         if (!GUILayout.Button(s)) continue;
-                        showDropdown = false;
-                        levelToShow = s;
+                        _showDropdown = false;
+                        _levelToShow = s;
                     }
 
                     GUILayout.EndScrollView();
                 }
-
-                answers.Clear();
+                
+                GUILayout.Box("Настройки");
+                GUILayout.Box("Gazes to next tip: " + TaskPanel.TipGazeCounter);
+                TaskPanel.TipGazeCounter = ((int) Math.Round(GUILayout.HorizontalSlider(
+                    TaskPanel.TipGazeCounter, 100, 500
+                ))).Round(50);
+                GUILayout.Box("Seconds to next tip: " + TaskPanel.TipTimeSeconds);
+                TaskPanel.TipTimeSeconds = ((int) Math.Round(GUILayout.HorizontalSlider(
+                    TaskPanel.TipTimeSeconds, 10, 60
+                ))).Round(5);
             }
 
             else
@@ -86,14 +101,15 @@ namespace ITMO.Scripts
                     if (Level.GetLevelTask(Level.CurrentLevelName, out var task)) GUILayout.Box(task);
                 }
 
-                // answer = GUILayout.Toggle(answer, "Ответ верный?");
+                // _answer = GUILayout.Toggle(_answer, "Ответ верный?");
 
                 if (Level.CurrentLevelName != null)
-                    if (GUILayout.Button(Level.CurrentLevelNode.Previous == null
+                {
+                    if (GUILayout.Button(Level.CurrentLevelNode?.Previous == null
                             ? "Disconnect"
                             : "Back to " + Level.CurrentLevelNode.Previous.Value))
                     {
-                        if (Level.CurrentLevelNode.Previous != null)
+                        if (Level.CurrentLevelNode?.Previous != null)
                         {
                             Level.CurrentLevelNode = Level.CurrentLevelNode.Previous;
                             Level.CurrentLevelName = Level.CurrentLevelNode.Value;
@@ -102,15 +118,12 @@ namespace ITMO.Scripts
                         else DisconnectAndReturn();
                     }
 
-                if (Level.CurrentLevelName != null)
-                    if (GUILayout.Button(Level.CurrentLevelNode.Next == null
+                    if (GUILayout.Button(Level.CurrentLevelNode?.Next == null
                             ? "Disconnect"
                             : "Next to " + Level.CurrentLevelNode.Next.Value))
                     {
-                        // if (Level.CurrentLevelName != null && answers.ContainsKey(Level.CurrentLevelName))
-                        //     answers[Level.CurrentLevelName] = answer;
-                        // else answers.Add(Level.CurrentLevelName, answer);
-                        if (Level.CurrentLevelNode.Next != null)
+                        _answers[Level.CurrentLevelName] = _answer;
+                        if (Level.CurrentLevelNode?.Next != null)
                         {
                             Level.CurrentLevelNode = Level.CurrentLevelNode.Next;
                             Level.CurrentLevelName = Level.CurrentLevelNode.Value;
@@ -118,23 +131,24 @@ namespace ITMO.Scripts
                         }
                         else DisconnectAndReturn();
                     }
+                }
 
                 if (GUILayout.Button("Disconnect")) DisconnectAndReturn();
-            }
-            
-            GUILayout.Box($"Точность распознавания: {StupidExpressionClassifier.Quality:F}");
-            StupidExpressionClassifier.Quality = GUILayout.HorizontalSlider(
-                StupidExpressionClassifier.Quality,
-                0.00f,
-                1.00f
-            );
-            StupidExpressionClassifier.Quality = (float) Math.Round(StupidExpressionClassifier.Quality, 2);
 
-            if (Server.ServerConnected)
-            {
+                GUILayout.Box($"Точность распознавания: {StupidExpressionClassifier.Quality:F}");
+                StupidExpressionClassifier.Quality = GUILayout.HorizontalSlider(
+                    StupidExpressionClassifier.Quality,
+                    0.00f,
+                    1.00f
+                );
+                StupidExpressionClassifier.Quality = (float) Math.Round(StupidExpressionClassifier.Quality, 2);
+
+
                 GUILayout.Box(StupidExpressionClassifier.CurrentEmotion.ToString());
                 GUILayout.Box($"Частота: {EyeInteraction.EyeGazeChangedCounter}");
                 GUILayout.Box($"Время: {Reference.Stopwatch.Elapsed.TotalSeconds:000}с");
+                GUILayout.Box("Current tip lvl: " + TaskPanel.TipLvl);
+                if (GUILayout.Button("Next tip")) TaskPanel.NextTip();
             }
 
             GUILayout.EndArea();
@@ -142,7 +156,8 @@ namespace ITMO.Scripts
 
         private void DisconnectAndReturn()
         {
-            levelToShow = ChooseMsg;
+            // Debug.Log(_answers);
+            _levelToShow = ChooseMsg;
             manager.GotoScene(scene);
             app.GetComponent<App>().Disconnect();
         }

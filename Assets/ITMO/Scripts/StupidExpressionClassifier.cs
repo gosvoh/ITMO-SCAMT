@@ -9,22 +9,31 @@ namespace ITMO.Scripts
 {
     public class StupidExpressionClassifier : MonoBehaviour
     {
-        public static Logger Logger;
-
         public static float Quality = 0.3f;
 
         public static Emotions CurrentEmotion = Emotions.Neutral;
-        private Emotions prevEmotion = Emotions.Neutral;
+        private Emotions _prevEmotion = Emotions.Neutral;
+        private Logger _logger;
 
-        private readonly Stopwatch stopwatch = new Stopwatch();
+        private readonly Stopwatch _stopwatch = new Stopwatch();
 
-        private void Start() => Server.SendEvent.AddListener(EventHandler);
+        private void Start()
+        {
+            Server.SendEvent.AddListener(EventHandler);
+        }
 
         private void EventHandler()
         {
-            if (Logger == null) return;
-            Logger.AddInfo(CurrentEmotion.ToString());
-            Logger.WriteInfo();
+            if (_logger == null)
+            {
+                _logger = new Logger("_emotions");
+                _logger.AddInfo("timestamp|emotion");
+            }
+            
+            if (!Server.ServerConnected) return;
+
+            _logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{CurrentEmotion.ToString()}");
+            _logger.WriteInfo();
         }
 
         /* Удивление
@@ -80,14 +89,14 @@ namespace ITMO.Scripts
                 EyeTracker.Shapes[EyeShape_v2.Eye_Right_Wide] > Quality)
             {
                 if (CurrentEmotion != Emotions.Surprise && CurrentEmotion != Emotions.Fear)
-                    stopwatch.Start();
+                    _stopwatch.Start();
                 CurrentEmotion = Emotions.Surprise;
-                if ((!stopwatch.IsRunning || stopwatch.ElapsedMilliseconds < 1000) &&
+                if ((!_stopwatch.IsRunning || _stopwatch.ElapsedMilliseconds < 1000) &&
                     (FaceTracker.Shapes[LipShape_v2.Jaw_Open] < Quality ||
                      FaceTracker.Shapes[LipShape_v2.Mouth_Sad_Left] < Quality ||
                      FaceTracker.Shapes[LipShape_v2.Mouth_Sad_Right] < Quality)) return;
-                stopwatch.Stop();
-                stopwatch.Reset();
+                _stopwatch.Stop();
+                _stopwatch.Reset();
                 CurrentEmotion = Emotions.Fear;
             }
             else if (FaceTracker.Shapes[LipShape_v2.Mouth_Smile_Left] > Quality &&
@@ -111,11 +120,11 @@ namespace ITMO.Scripts
                 CurrentEmotion = Emotions.Neutral;
             }
 
-            if (CurrentEmotion == prevEmotion) return;
-            if (Logger is null) return;
-            Logger.AddInfo($"[{DateTime.Now}] {CurrentEmotion.ToString()}");
-            Logger.WriteInfo();
-            prevEmotion = CurrentEmotion;
+            if (CurrentEmotion == _prevEmotion) return;
+            if (_logger is null) return;
+            _logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{CurrentEmotion.ToString()}");
+            _logger.WriteInfo();
+            _prevEmotion = CurrentEmotion;
         }
     }
 

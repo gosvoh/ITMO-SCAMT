@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net.Sockets;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading;
 using NarupaIMD;
@@ -13,9 +14,10 @@ namespace ITMO.Scripts
     public class Server : MonoBehaviour
     {
         public static readonly UnityEvent SendEvent = new UnityEvent();
+
         [SerializeField] private NarupaImdSimulation simulation;
 
-        private Process serverProcess;
+        private Process _serverProcess;
 
         public static bool ServerConnected { get; private set; }
 
@@ -27,7 +29,7 @@ namespace ITMO.Scripts
         public void OnApplicationQuit()
         {
             Disconnect();
-            if (serverProcess == null) return;
+            if (_serverProcess == null) return;
             var client = new TcpClient("localhost", 7777);
             var buffer = Encoding.UTF8.GetBytes("q");
             client.GetStream().Write(buffer, 0, buffer.Length);
@@ -35,8 +37,8 @@ namespace ITMO.Scripts
             Thread.Sleep(1000);
             try
             {
-                serverProcess.StandardInput.Write("");
-                serverProcess.StandardInput.Flush();
+                _serverProcess.StandardInput.Write("");
+                _serverProcess.StandardInput.Flush();
             }
             catch (InvalidOperationException)
             {
@@ -47,13 +49,12 @@ namespace ITMO.Scripts
         {
             try
             {
-                serverProcess = new Process
+                _serverProcess = new Process
                 {
                     StartInfo =
                     {
                         FileName = Application.dataPath + "\\..\\run_server.bat",
                         WorkingDirectory = Application.dataPath + "\\..\\",
-
                         UseShellExecute = false,
                         RedirectStandardInput = true,
                         CreateNoWindow = true
@@ -61,7 +62,7 @@ namespace ITMO.Scripts
                 };
 
 
-                serverProcess.Start();
+                _serverProcess.Start();
             }
             catch (Exception e)
             {
@@ -95,31 +96,30 @@ namespace ITMO.Scripts
                 await simulation.AutoConnect();
                 if (simulation.gameObject.activeSelf) break;
             }
-            
-            if (!simulation.gameObject.activeSelf) return;
+
+            if (!simulation.gameObject.activeSelf) throw new ServerException("Cannot connect to Narupa server");
 
             ServerConnected = true;
-            InitLoggers();
-            EyeInteraction.EyeGazeChangedCounter = 0;
             Reference.Stopwatch.Restart();
         }
 
-        private void InitLoggers()
-        {
-            EyeInteraction.Logger = new Logger();
-            EyeTracker.Logger = new Logger("_eyeTracker");
-            FaceTracker.Logger = new Logger("_faceTracker");
-            StupidExpressionClassifier.Logger = new Logger("_emotions");
-        }
-
-        public static void Send(string pathToMolecule, string host = "127.0.0.1", int port = 7777)
+        public static async void Send(string pathToMolecule, string host = "127.0.0.1", int port = 7777)
         {
             Reference.Stopwatch.Stop();
             SendEvent.Invoke();
-            var client = new TcpClient(host, port);
-            var buffer = Encoding.UTF8.GetBytes(pathToMolecule);
-            client.GetStream().Write(buffer, 0, buffer.Length);
-            client.Close();
+            try
+            {
+                var client = new TcpClient(host, port);
+                var buffer = Encoding.UTF8.GetBytes(pathToMolecule);
+                await client.GetStream().WriteAsync(buffer, 0, buffer.Length);
+                client.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
             Reference.Stopwatch.Restart();
         }
 

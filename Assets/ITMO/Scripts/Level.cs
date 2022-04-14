@@ -22,9 +22,7 @@ namespace ITMO.Scripts
         /// </summary>
         private static Dictionary<string, string> _allTasks;
 
-        private static Dictionary<string, string> _allTasksTip1;
-        private static Dictionary<string, string> _allTasksTip2;
-        private static Dictionary<string, string> _allTasksTip3;
+        private static Dictionary<int, Dictionary<string, string>> _allTasksTip;
 
         public static LinkedList<string> LevelNamesList;
 
@@ -50,9 +48,12 @@ namespace ITMO.Scripts
         {
             _allLevels = new Dictionary<string, string>();
             _allTasks = new Dictionary<string, string>();
-            _allTasksTip1 = new Dictionary<string, string>();
-            _allTasksTip2 = new Dictionary<string, string>();
-            _allTasksTip3 = new Dictionary<string, string>();
+            _allTasksTip = new Dictionary<int, Dictionary<string, string>>
+            {
+                [1] = new Dictionary<string, string>(),
+                [2] = new Dictionary<string, string>(),
+                [3] = new Dictionary<string, string>()
+            };
             LevelNamesList = new LinkedList<string>();
             DifficultyLevels = new Dictionary<string, LinkedList<string>>();
             var mainDir = $"{Application.dataPath}\\..\\Molecules";
@@ -70,9 +71,9 @@ namespace ITMO.Scripts
                         _allTasks.Add(fn[0], lines[0]);
                         if (lines.Length > 1)
                         {
-                            _allTasksTip1[fn[0]] = lines[1];
-                            _allTasksTip2[fn[0]] = lines[2];
-                            _allTasksTip3[fn[0]] = lines[3];
+                            _allTasksTip[1][fn[0]] = lines[1];
+                            _allTasksTip[2][fn[0]] = lines[2];
+                            _allTasksTip[3][fn[0]] = lines[3];
                         }
 
                         break;
@@ -98,9 +99,9 @@ namespace ITMO.Scripts
                             _allTasks.Add(fn[0], lines[0]);
                             if (lines.Length > 1)
                             {
-                                _allTasksTip1[fn[0]] = lines[1];
-                                _allTasksTip2[fn[0]] = lines[2];
-                                _allTasksTip3[fn[0]] = lines[3];
+                                _allTasksTip[1][fn[0]] = lines[1];
+                                _allTasksTip[2][fn[0]] = lines[2];
+                                _allTasksTip[3][fn[0]] = lines[3];
                             }
 
                             break;
@@ -114,8 +115,14 @@ namespace ITMO.Scripts
         public static string GetLevelPath(string lvl) => _allLevels[lvl];
 
         public static bool GetLevelTask(string lvl, out string task) => _allTasks.TryGetValue(lvl, out task);
-        public static bool GetLevelTip1(string lvl, out string tip1) => _allTasksTip1.TryGetValue(lvl, out tip1);
-        public static bool GetLevelTip2(string lvl, out string tip2) => _allTasksTip2.TryGetValue(lvl, out tip2);
-        public static bool GetLevelTip3(string lvl, out string tip3) => _allTasksTip3.TryGetValue(lvl, out tip3);
+
+        public static bool GetLevelTip(string lvl, int tipLvl, out string tip)
+        {
+            var t = _allTasksTip.TryGetValue(tipLvl, out var dict);
+            if (t) return dict.TryGetValue(lvl, out tip);
+            tip = string.Empty;
+            return false;
+
+        }
     }
 }

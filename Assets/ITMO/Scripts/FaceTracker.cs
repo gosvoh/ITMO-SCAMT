@@ -8,54 +8,53 @@ namespace ITMO.Scripts
 {
     public class FaceTracker : MonoBehaviour
     {
-        public static Logger Logger;
+        public static Dictionary<LipShape_v2, float> Shapes;
 
-        private int counter = -1;
-        private bool logHeaderSet;
-
-        internal static Dictionary<LipShape_v2, float> Shapes;
+        private static Logger _logger;
+        private int _counter = -1;
 
         private void Start()
         {
             if (!SRanipal_Lip_Framework.Instance.EnableLip) enabled = false;
             Server.SendEvent.AddListener(EventHandler);
         }
+        
+        private static void EventHandler()
+        {
+            if (_logger == null)
+            {
+                _logger = new Logger("_faceTracker");
+                var sb = new StringBuilder();
+                sb.Append("timestamp|");
+                foreach (var value in Enum.GetNames(typeof(LipShape_v2))) sb.Append(value).Append('|');
+                sb.Remove(sb.Length - 1, 1);
+                _logger.AddInfo(sb.ToString());
+            }
+            
+            if (!Server.ServerConnected) return;
+
+            _logger.AddInfo(
+                $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}");
+            _logger.WriteInfo();
+        }
 
         private void FixedUpdate()
         {
-            if (!Server.ServerConnected || Logger == null) return;
+            if (!Server.ServerConnected || _logger == null) return;
 
-            counter++;
-            if (counter % 10 != 0) return;
+            _counter++;
+            if (_counter % 10 != 0) return;
 
             if (SRanipal_Lip_Framework.Status != SRanipal_Lip_Framework.FrameworkStatus.WORKING) return;
 
             SRanipal_Lip_v2.GetLipWeightings(out Shapes);
 
             var sb = new StringBuilder();
-            if (!logHeaderSet)
-            {
-                sb.Append("timestamp|");
-                foreach (var value in Enum.GetNames(typeof(LipShape_v2))) sb.Append($"{value}|");
-                sb.Remove(sb.Length - 1, 1);
-                Logger.AddInfo(sb.ToString());
-                sb.Clear();
-                logHeaderSet = true;
-            }
-
             sb.Append(DateTime.Now.ToString("HH:mm:ss.fff")).Append("|");
-            foreach (var value in Shapes.Values) sb.Append($"{value}|");
+            foreach (var value in Shapes.Values) sb.Append(value).Append('|');
             sb.Remove(sb.Length - 1, 1);
-            Logger.AddInfo(sb.ToString());
-            Logger.WriteInfo();
-        }
-
-        private static void EventHandler()
-        {
-            if (Logger == null) return;
-            Logger.AddInfo(
-                $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}");
-            Logger.WriteInfo();
+            _logger.AddInfo(sb.ToString());
+            _logger.WriteInfo();
         }
     }
 }

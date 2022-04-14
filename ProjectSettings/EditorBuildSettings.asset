@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/ITMO/NarupaXR Scene.unity
     guid: 9004003917e9e3c41867ba1a880c5401
   - enabled: 0
     path: Assets/ViveSR/Scenes/Lip/LipSample_v2.unity
     guid: c11dda60218b88142a79969ac1006896
-  - enabled: 0
+  - enabled: 1
     path: Assets/ITMO/Emotions.unity
     guid: 38b7d01392c855947b94f2e3a80bb1db
   m_configObjects:

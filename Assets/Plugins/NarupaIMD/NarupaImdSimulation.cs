@@ -127,7 +127,8 @@ namespace NarupaIMD
 
             int? GetServicePort(string name)
             {
-                return services.ContainsKey(name) ? services[name].ToObject<int>() : (int?) null;
+                // TODO Проверить работоспособность
+                return services.TryGetValue(name, out var value) ? value.ToObject<int>() : (int?) null;
             }
         }
 

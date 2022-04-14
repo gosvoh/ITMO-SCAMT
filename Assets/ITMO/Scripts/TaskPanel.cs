@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Text;
+using Castle.Core.Internal;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ITMO.Scripts
@@ -7,48 +10,95 @@ namespace ITMO.Scripts
     {
         [SerializeField] private Text text;
         [SerializeField] private GameObject panel;
-        [SerializeField] private AudioSource audioSource;
-        private string str;
+        
+        private static AudioSource _audioSource;
+        private static bool _panelUpdated;
+        
+        public static int TipLvl;
+        public static int TipGazeCounter = 250;
+        public static int TipTimeSeconds = 20;
 
-        private void Update()
+        private string _str;
+        private float _timer;
+
+        private void Awake()
         {
-            if (Level.CurrentLevelName == null || !Level.GetLevelTask(Level.CurrentLevelName, out var task))
+            _audioSource = GetComponent<AudioSource>();
+            Server.SendEvent.AddListener(EventHandler);
+        }
+
+        private void EventHandler()
+        {
+            TipLvl = 0;
+            _timer = 0;
+            _str = string.Empty;
+            _panelUpdated = true;
+        }
+
+        private void OnEnable() => _panelUpdated = true;
+
+        private void FixedUpdate()
+        {
+            if (Level.CurrentLevelName == null)
             {
                 panel.SetActive(false);
                 return;
             }
-            
-            str = task;
 
-            const int baseGazeCounter = 250;
-            const int baseSeconds = 5;
+            _timer += Time.fixedDeltaTime;
 
-            if ((EyeInteraction.EyeGazeChangedCounter == baseGazeCounter ||
-                 (int) Reference.Stopwatch.Elapsed.TotalSeconds == baseSeconds) &&
-                Level.GetLevelTip1(Level.CurrentLevelName, out var tip))
+            if (TipLvl != 1 && (EyeInteraction.EyeGazeChangedCounter == TipGazeCounter ||
+                                (int) _timer == TipTimeSeconds * 1))
             {
-                str = $"{task}\n{tip}";
-                audioSource.Play();
+                NextTip();
             }
 
-            if ((EyeInteraction.EyeGazeChangedCounter == baseGazeCounter * 2 ||
-                 (int) Reference.Stopwatch.Elapsed.TotalSeconds == baseSeconds * 2) &&
-                Level.GetLevelTip2(Level.CurrentLevelName, out tip))
+            if (TipLvl != 2 && (EyeInteraction.EyeGazeChangedCounter == TipGazeCounter * 2 ||
+                                (int) _timer == TipTimeSeconds * 2))
             {
-                str = $"{task}\n{tip}";
-                audioSource.Play();
+                NextTip();
             }
 
-            if ((EyeInteraction.EyeGazeChangedCounter == baseGazeCounter * 3 ||
-                 (int) Reference.Stopwatch.Elapsed.TotalSeconds == baseSeconds * 3) &&
-                Level.GetLevelTip3(Level.CurrentLevelName, out tip))
+            if (TipLvl != 3 && (EyeInteraction.EyeGazeChangedCounter == TipGazeCounter * 3 ||
+                                (int) _timer == TipTimeSeconds * 3))
             {
-                str = $"{task}\n{tip}";
-                audioSource.Play();
+                NextTip();
             }
 
-            text.text = str;
+            UpdateTask();
+
+            text.text = _str;
             panel.SetActive(true);
         }
+
+        private void UpdateTask()
+        {
+            if (!Level.GetLevelTask(Level.CurrentLevelName, out var task) || !_panelUpdated)
+                return;
+
+            if (!TryGetNextTip(out var tip))
+            {
+                if (_str.IsNullOrEmpty()) _str = task;
+                _panelUpdated = false;
+                return;
+            }
+
+            var sb = new StringBuilder();
+            sb.Append(task).Append("\n\n").Append(tip);
+
+            _str = sb.ToString();
+
+            _panelUpdated = false;
+        }
+
+        public static void NextTip()
+        {
+            if (TipLvl >= 3) return;
+            TipLvl++;
+            _panelUpdated = true;
+            _audioSource.Play();
+        }
+
+        private static bool TryGetNextTip(out string tip) => Level.GetLevelTip(Level.CurrentLevelName, TipLvl, out tip);
     }
 }

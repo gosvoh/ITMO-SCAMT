@@ -12,56 +12,56 @@ namespace ITMO.Scripts
         [SerializeField] private SynchronisedFrameSource frameSource;
         [SerializeField] private GameObject atomPrefab;
 
-        // public static int VisibilityRadius = 100;
-        public static Logger Logger;
+        private Logger _logger;
         public static int EyeGazeChangedCounter;
 
         private static int _id = -10;
         private static readonly List<GameObject> Spheres = new List<GameObject>();
 
-        private readonly GazeIndex[] gazePriority = { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
-        private GameObject parent;
-        private int counter = -1;
-        private bool logHeaderSet;
+        private readonly GazeIndex[] _gazePriority = { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
+        private GameObject _parent;
+        private int _counter = -1;
 
         private void Awake() => SetWalls();
 
         private void Start() => Server.SendEvent.AddListener(EventHandler);
 
-        private static void EventHandler()
+        private void EventHandler()
         {
-            if (Logger == null) return;
-            Logger.AddInfo(
+            if (_logger == null)
+            {
+                _logger = new Logger();
+                _logger.AddInfo("timestamp|position|ID");
+            }
+            
+            if (!Server.ServerConnected) return;
+            
+            _logger.AddInfo(
                 $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}; Gaze changed - {EyeGazeChangedCounter}");
-            Logger.WriteInfo();
+            _logger.WriteInfo();
             EyeGazeChangedCounter = 0;
         }
 
-        private void OnDisable() => Destroy(parent);
+        private void OnDisable() => Destroy(_parent);
 
         private void FixedUpdate()
         {
             var frame = frameSource.CurrentFrame;
-            if (counter++ % 5 != 0) return;
+            if (_counter++ % 5 != 0) return;
             if (frame?.ParticleCount != 0 && Spheres.Count != frame?.ParticleCount)
             {
-                Destroy(parent);
+                Destroy(_parent);
                 Spheres.Clear();
                 CreateSphere(frame);
             }
             
-            if (!Server.ServerConnected || Logger == null) return;
+            if (!Server.ServerConnected || _logger == null) return;
 
-            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING &&
-                SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.NOT_SUPPORT) return;
+            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING) return;
 
-            if (!logHeaderSet)
-            {
-                Logger.AddInfo("timestamp|position|ID");
-                logHeaderSet = true;
-            }
-
-            foreach (var index in gazePriority)
+            if (_counter % 10 != 0) return;
+            
+            foreach (var index in _gazePriority)
             {
                 var layer = atomPrefab.layer;
                 var eyeFocus = SRanipal_Eye_v2.Focus(index, out _, out var focusInfo, 0,
@@ -72,8 +72,8 @@ namespace ITMO.Scripts
                 if (info.Index == _id) break;
                 _id = info.Index;
                 EyeGazeChangedCounter++;
-                Logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
-                Logger.WriteInfo();
+                _logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
+                _logger.WriteInfo();
             }
         }
 
@@ -84,7 +84,7 @@ namespace ITMO.Scripts
             simSpace.transform.localPosition = Vector3.zero;
             simSpace.transform.rotation = new Quaternion();
 
-            parent = new GameObject("ParentEyeInteraction")
+            _parent = new GameObject("ParentEyeInteraction")
             {
                 transform =
                 {
@@ -100,7 +100,7 @@ namespace ITMO.Scripts
             for (int i = 0, partCount = frame.ParticleCount; i < partCount; ++i)
             {
                 var atom = Instantiate(atomPrefab, particlePositions[i], Quaternion.identity);
-                atom.transform.SetParent(parent.transform, false);
+                atom.transform.SetParent(_parent.transform, false);
                 var info = atom.GetComponent<Info>();
                 info.Index = particles[i].Index;
                 info.Obj = atom;
