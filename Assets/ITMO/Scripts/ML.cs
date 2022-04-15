@@ -23,20 +23,20 @@ namespace ITMO.Scripts
 
         private readonly Dictionary<uint, string> _emotions = new Dictionary<uint, string>()
         {
-            {0, "НЕЙТРАЛЬНАЯ"},
-            {1, "ПЕЧАЛЬ"},
-            {2, "ОТВРАЩЕНИЕ"},
-            {3, "ГНЕВ"},
-            {4, "УДИВЛЕНИЕ"},
-            {5, "СТРАХ"},
-            {6, "ПРЕЗРЕНИЕ"},
-            {7, "СЧАСТЬЕ"}
+            {0, "Neutral"},
+            {1, "Sad"},
+            {2, "Disgust"},
+            {3, "Anger"},
+            {4, "Surprise"},
+            {5, "Fear"},
+            {6, "Contempt"},
+            {7, "Happiness"}
         };
 
         public void Awake()
         {
             var context = new MLContext();
-            var model = context.Model.Load(Application.streamingAssetsPath + "/model.zip", out _) as MulticlassPredictionTransformer<LightGbmMulticlassTrainer>;
+            var model = context.Model.Load(Application.streamingAssetsPath + "/model.zip", out _);
             _predictionEngine = context.Model.CreatePredictionEngine<RealData, RealDataPredict>(model);
         }
 
