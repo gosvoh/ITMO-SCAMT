@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Plugins.Narupa.Core;
 using UnityEngine;
 using ViveSR.anipal.Eye;
@@ -78,18 +79,16 @@ namespace ITMO.Scripts
             
             foreach (var (key, value) in eyeWeightings)
             {
-                var info = GetType().GetProperty(nameof(key));
+                var info = GetType().GetProperty(Enum.GetName(typeof(EyeShape_v2), key) ?? string.Empty);
                 if (info == null || !info.CanWrite) continue;
                 info.SetValue(this, value);
-                Debug.LogWarning(nameof(key) + " is setting");
             }
             
             foreach (var (key, value) in lipWeightings)
             {
-                var info = GetType().GetProperty(nameof(key));
+                var info = GetType().GetProperty(Enum.GetName(typeof(LipShape_v2), key) ?? string.Empty);
                 if (info == null || !info.CanWrite) continue;
                 info.SetValue(this, value);
-                Debug.LogWarning(nameof(key) + " is setting");
             }
             
             emotion = string.Empty;

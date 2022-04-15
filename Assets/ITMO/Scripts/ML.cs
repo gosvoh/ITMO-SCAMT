@@ -19,6 +19,8 @@ namespace ITMO.Scripts
         private PredictionEngine<RealData, RealDataPredict> _predictionEngine;
         [SerializeField] private TMP_Text text;
 
+        private int _counter;
+
         private readonly Dictionary<uint, string> _emotions = new Dictionary<uint, string>()
         {
             {0, "НЕЙТРАЛЬНАЯ"},
@@ -34,7 +36,7 @@ namespace ITMO.Scripts
         public void Awake()
         {
             var context = new MLContext();
-            var model = context.Model.Load(Application.streamingAssetsPath + "/model.zip", out var dataViewSchema) as MulticlassPredictionTransformer<LightGbmMulticlassTrainer>;
+            var model = context.Model.Load(Application.streamingAssetsPath + "/model.zip", out _) as MulticlassPredictionTransformer<LightGbmMulticlassTrainer>;
             _predictionEngine = context.Model.CreatePredictionEngine<RealData, RealDataPredict>(model);
         }
 
