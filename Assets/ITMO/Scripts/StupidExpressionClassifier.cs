@@ -17,7 +17,7 @@ namespace ITMO.Scripts
 
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
-        private void Start()
+        private void Awake()
         {
             Server.SendEvent.AddListener(EventHandler);
             Server.ConnectionEvent.AddListener(ConnectionHandler);

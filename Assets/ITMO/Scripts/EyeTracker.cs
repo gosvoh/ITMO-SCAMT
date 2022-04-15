@@ -13,7 +13,7 @@ namespace ITMO.Scripts
 
         public static Dictionary<EyeShape_v2, float> Shapes;
 
-        private void Start()
+        private void Awake()
         {
             if (!SRanipal_Eye_Framework.Instance.EnableEye) enabled = false;
             Server.SendEvent.AddListener(EventHandler);

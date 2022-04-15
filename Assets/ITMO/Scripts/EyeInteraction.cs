@@ -22,10 +22,9 @@ namespace ITMO.Scripts
         private GameObject _parent;
         private int _counter = -1;
 
-        private void Awake() => SetWalls();
-
-        private void Start()
+        private void Awake()
         {
+            SetWalls();
             Server.SendEvent.AddListener(EventHandler);
             Server.ConnectionEvent.AddListener(ConnectionHandler);
         }

@@ -13,7 +13,7 @@ namespace ITMO.Scripts
         private Logger _logger;
         private int _counter = -1;
 
-        private void Start()
+        private void Awake()
         {
             if (!SRanipal_Lip_Framework.Instance.EnableLip) enabled = false;
             Server.SendEvent.AddListener(EventHandler);
