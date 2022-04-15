@@ -17,15 +17,33 @@ namespace ITMO.Scripts
         {
             if (!SRanipal_Eye_Framework.Instance.EnableEye) enabled = false;
             Server.SendEvent.AddListener(EventHandler);
+            Server.ConnectionEvent.AddListener(ConnectionHandler);
+        }
+        
+        private void EventHandler()
+        {
+            if (!Server.ServerConnected) return;
+
+            _logger.AddInfo(
+                $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}");
+            _logger.WriteInfo();
+        }
+
+        private void ConnectionHandler()
+        {
+            _logger = new Logger("_eyeTracker");
+            var sb = new StringBuilder();
+            sb.Append("timestamp|");
+            foreach (var value in Enum.GetNames(typeof(EyeShape_v2))) sb.Append(value).Append('|');
+            sb.Append("l_pupil_diameter|r_pupil_diameter");
+            _logger.AddInfo(sb.ToString());
         }
 
         private void FixedUpdate()
         {
             if (!Server.ServerConnected || _logger == null) return;
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING) return;
-
-            _counter++;
-            if (_counter % 10 != 0) return;
+            if (_counter++ % 10 != 0) return;
 
             SRanipal_Eye_v2.GetEyeWeightings(out Shapes);
 
@@ -36,25 +54,6 @@ namespace ITMO.Scripts
             SRanipal_Eye_v2.GetPupilDiameter(EyeIndex.RIGHT, out var rDiam);
             sb.Append(lDiam).Append('|').Append(rDiam);
             _logger.AddInfo(sb.ToString());
-            _logger.WriteInfo();
-        }
-
-        private void EventHandler()
-        {
-            if (_logger == null)
-            {
-                _logger = new Logger("_eyeTracker");
-                var sb = new StringBuilder();
-                sb.Append("timestamp|");
-                foreach (var value in Enum.GetNames(typeof(EyeShape_v2))) sb.Append(value).Append('|');
-                sb.Append("l_pupil_diameter|r_pupil_diameter");
-                _logger.AddInfo(sb.ToString());
-            }
-            
-            if (!Server.ServerConnected) return;
-
-            _logger.AddInfo(
-                $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}");
             _logger.WriteInfo();
         }
     }

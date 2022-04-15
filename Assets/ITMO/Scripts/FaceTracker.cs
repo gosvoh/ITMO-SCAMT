@@ -10,27 +10,18 @@ namespace ITMO.Scripts
     {
         public static Dictionary<LipShape_v2, float> Shapes;
 
-        private static Logger _logger;
+        private Logger _logger;
         private int _counter = -1;
 
         private void Start()
         {
             if (!SRanipal_Lip_Framework.Instance.EnableLip) enabled = false;
             Server.SendEvent.AddListener(EventHandler);
+            Server.ConnectionEvent.AddListener(ConnectionHandler);
         }
-        
-        private static void EventHandler()
+
+        private void EventHandler()
         {
-            if (_logger == null)
-            {
-                _logger = new Logger("_faceTracker");
-                var sb = new StringBuilder();
-                sb.Append("timestamp|");
-                foreach (var value in Enum.GetNames(typeof(LipShape_v2))) sb.Append(value).Append('|');
-                sb.Remove(sb.Length - 1, 1);
-                _logger.AddInfo(sb.ToString());
-            }
-            
             if (!Server.ServerConnected) return;
 
             _logger.AddInfo(
@@ -38,15 +29,22 @@ namespace ITMO.Scripts
             _logger.WriteInfo();
         }
 
+        private void ConnectionHandler()
+        {
+            _logger = new Logger("_faceTracker");
+            var sb = new StringBuilder();
+            sb.Append("timestamp|");
+            foreach (var value in Enum.GetNames(typeof(LipShape_v2))) sb.Append(value).Append('|');
+            sb.Remove(sb.Length - 1, 1);
+            _logger.AddInfo(sb.ToString());
+        }
+
         private void FixedUpdate()
         {
             if (!Server.ServerConnected || _logger == null) return;
-
-            _counter++;
-            if (_counter % 10 != 0) return;
-
             if (SRanipal_Lip_Framework.Status != SRanipal_Lip_Framework.FrameworkStatus.WORKING) return;
-
+            if (_counter++ % 10 != 0) return;
+            
             SRanipal_Lip_v2.GetLipWeightings(out Shapes);
 
             var sb = new StringBuilder();

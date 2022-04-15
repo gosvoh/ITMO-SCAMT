@@ -20,20 +20,21 @@ namespace ITMO.Scripts
         private void Start()
         {
             Server.SendEvent.AddListener(EventHandler);
+            Server.ConnectionEvent.AddListener(ConnectionHandler);
         }
 
         private void EventHandler()
         {
-            if (_logger == null)
-            {
-                _logger = new Logger("_emotions");
-                _logger.AddInfo("timestamp|emotion");
-            }
-            
             if (!Server.ServerConnected) return;
 
             _logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{CurrentEmotion.ToString()}");
             _logger.WriteInfo();
+        }
+
+        private void ConnectionHandler()
+        {
+            _logger = new Logger("_emotions");
+            _logger.AddInfo("timestamp|emotion");
         }
 
         /* Удивление
