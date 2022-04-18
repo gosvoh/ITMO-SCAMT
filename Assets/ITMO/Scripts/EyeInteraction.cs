@@ -20,12 +20,14 @@ namespace ITMO.Scripts
 
         private GameObject _parent;
         private int _counter = -1;
+        public static int FrameBreakpoint = 10;
 
         private void Awake()
         {
             SetWalls();
             Server.SendEvent.AddListener(EventHandler);
             Server.ConnectionEvent.AddListener(ConnectionHandler);
+            PlayerPrefs.GetInt("EyeInteraction.FrameBreakpoint", 10);
         }
 
         private void ConnectionHandler()
@@ -51,7 +53,7 @@ namespace ITMO.Scripts
         {
             if (!Server.ServerConnected || Logger == null) return;
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING) return;
-            if (_counter++ % 10 != 0) return;
+            if (_counter++ % FrameBreakpoint != 0) return;
             
             UpdateScene();
 

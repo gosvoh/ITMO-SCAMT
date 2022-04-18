@@ -55,7 +55,7 @@ namespace ITMO.Scripts
                 if (_showDropdown)
                 {
                     Level.Initialize();
-                    
+
                     _scrollViewVector = GUILayout.BeginScrollView(_scrollViewVector, GUILayout.MaxHeight(200));
 
                     if (_list.Length == 0) GUILayout.Box(EmptyMsg);
@@ -93,7 +93,7 @@ namespace ITMO.Scripts
                         }
                         else DisconnectAndReturn();
                     }
-                    
+
                     if (GUILayout.Button(Level.CurrentLevelNode?.Next == null
                             ? "Disconnect"
                             : "Next to " + Level.CurrentLevelNode.Next.Value))
@@ -112,7 +112,13 @@ namespace ITMO.Scripts
             }
 
             EyeTrackerSwitcher.TobiiEnabled = GUILayout.Toggle(EyeTrackerSwitcher.TobiiEnabled, "Enable Tobii");
-            
+            if (!EyeTrackerSwitcher.TobiiEnabled)
+            {
+                GUILayout.Box($"Register gaze every {EyeInteraction.FrameBreakpoint * Time.fixedDeltaTime:0.00}s");
+                EyeInteraction.FrameBreakpoint =
+                    (int) GUILayout.HorizontalSlider(EyeInteraction.FrameBreakpoint, 1, 50);
+            }
+
             GUILayout.EndArea();
         }
 
