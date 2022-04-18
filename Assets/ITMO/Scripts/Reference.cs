@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using ITMO.Scripts;
 using UnityEngine;
-using Logger = ITMO.Scripts.Logger;
 
 namespace ITMO.Scripts
 {
