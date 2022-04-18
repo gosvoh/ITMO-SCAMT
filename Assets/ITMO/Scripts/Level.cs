@@ -122,7 +122,6 @@ namespace ITMO.Scripts
             if (t) return dict.TryGetValue(lvl, out tip);
             tip = string.Empty;
             return false;
-
         }
     }
 }

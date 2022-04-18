@@ -87,9 +87,17 @@ namespace ITMO.Scripts
                 TaskPanel.TipGazeCounter = ((int) Math.Round(GUILayout.HorizontalSlider(
                     TaskPanel.TipGazeCounter, 100, 500
                 ))).Round(50);
-                GUILayout.Box("Seconds to next tip: " + TaskPanel.TipTimeSeconds);
-                TaskPanel.TipTimeSeconds = ((int) Math.Round(GUILayout.HorizontalSlider(
-                    TaskPanel.TipTimeSeconds, 10, 60
+                GUILayout.Box("Seconds to 1 tip: " + TaskPanel.Tip1TimeSeconds);
+                TaskPanel.Tip1TimeSeconds = ((int) Math.Round(GUILayout.HorizontalSlider(
+                    TaskPanel.Tip1TimeSeconds, 10, 180
+                ))).Round(5);
+                GUILayout.Box("Seconds to 2 tip: " + TaskPanel.Tip2TimeSeconds);
+                TaskPanel.Tip2TimeSeconds = ((int) Math.Round(GUILayout.HorizontalSlider(
+                    TaskPanel.Tip2TimeSeconds, 10, 180
+                ))).Round(5);
+                GUILayout.Box("Seconds to 3 tip: " + TaskPanel.Tip3TimeSeconds);
+                TaskPanel.Tip3TimeSeconds = ((int) Math.Round(GUILayout.HorizontalSlider(
+                    TaskPanel.Tip3TimeSeconds, 10, 180
                 ))).Round(5);
             }
 
@@ -134,17 +142,8 @@ namespace ITMO.Scripts
                 }
 
                 if (GUILayout.Button("Disconnect")) DisconnectAndReturn();
-
-                GUILayout.Box($"Точность распознавания: {StupidExpressionClassifier.Quality:F}");
-                StupidExpressionClassifier.Quality = GUILayout.HorizontalSlider(
-                    StupidExpressionClassifier.Quality,
-                    0.00f,
-                    1.00f
-                );
-                StupidExpressionClassifier.Quality = (float) Math.Round(StupidExpressionClassifier.Quality, 2);
-
-
-                GUILayout.Box(StupidExpressionClassifier.CurrentEmotion.ToString());
+                
+                GUILayout.Box(MLObject.CurrentEmotion);
                 GUILayout.Box($"Частота: {EyeInteraction.EyeGazeChangedCounter}");
                 GUILayout.Box($"Время: {Reference.Stopwatch.Elapsed.TotalSeconds:000}с");
                 GUILayout.Box("Current tip lvl: " + TaskPanel.TipLvl);

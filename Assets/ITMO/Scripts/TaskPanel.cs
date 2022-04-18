@@ -16,7 +16,9 @@ namespace ITMO.Scripts
         
         public static int TipLvl;
         public static int TipGazeCounter = 250;
-        public static int TipTimeSeconds = 20;
+        public static int Tip1TimeSeconds = 30;
+        public static int Tip2TimeSeconds = 50;
+        public static int Tip3TimeSeconds = 70;
 
         private string _str;
         private float _timer;
@@ -48,19 +50,19 @@ namespace ITMO.Scripts
             _timer += Time.fixedDeltaTime;
 
             if (TipLvl != 1 && (EyeInteraction.EyeGazeChangedCounter == TipGazeCounter ||
-                                (int) _timer == TipTimeSeconds * 1))
+                                (int) Reference.Stopwatch.Elapsed.TotalMilliseconds == Tip1TimeSeconds))
             {
                 NextTip();
             }
 
             if (TipLvl != 2 && (EyeInteraction.EyeGazeChangedCounter == TipGazeCounter * 2 ||
-                                (int) _timer == TipTimeSeconds * 2))
+                                (int) Reference.Stopwatch.Elapsed.TotalMilliseconds == Tip2TimeSeconds))
             {
                 NextTip();
             }
 
             if (TipLvl != 3 && (EyeInteraction.EyeGazeChangedCounter == TipGazeCounter * 3 ||
-                                (int) _timer == TipTimeSeconds * 3))
+                                (int) Reference.Stopwatch.Elapsed.TotalMilliseconds == Tip3TimeSeconds))
             {
                 NextTip();
             }
