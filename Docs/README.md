@@ -3,7 +3,7 @@
 ## Установка и запуск
 - Установить [SteamVR](https://store.steampowered.com/app/250820/SteamVR)
 - Скачать архив с [клиентом](https://github.com/gosvoh/ITMO-SCAMT/releases/latest) и распаковать
-- Установить .Net Framework 4.8 (ndp48-x86-x64-allos-enu.exe) и VIVE SRanipal Runtime (VIVE_SRanipalInstaller.msi)
+- Установить [.Net Framework 4.8](https://go.microsoft.com/fwlink/?linkid=2088631) и [VIVE SRanipal Runtime](https://dl.vive.com/SRSDK/runtime/VIVE_SRanipalInstaller.msi)
 - Скачать архив с [сервером](https://github.com/gosvoh/ITMO-SCAMT-Server/releases/latest) и распаковать в директорию с клиентом
 - Запустить install_server.bat и дождаться процесса установки
 - Запустить Narupa ITMO SCAMT.exe
@@ -28,7 +28,7 @@
 ## Installation and launch
 - Install [SteamVR](https://store.steampowered.com/app/250820/SteamVR)
 - Download the archive with the client [client](https://github.com/gosvoh/ITMO-SCAMT/releases/latest) and unzip it
-- Install .Net Framework 4.8 (ndp48-x86-x64-allos-enu.exe) and VIVE SRanipal Runtime (VIVE_SRanipalInstaller.msi)
+- Install [.Net Framework 4.8](https://go.microsoft.com/fwlink/?linkid=2088631) и [VIVE SRanipal Runtime](https://dl.vive.com/SRSDK/runtime/VIVE_SRanipalInstaller.msi)
 - Download the archive with the [server](https://github.com/gosvoh/ITMO-SCAMT-Server/releases/latest) and unzip it into the directory with the client
 - Launch install_server.bat and wait for the installation process
 - Launch Narupa ITMO SCAMT.exe
