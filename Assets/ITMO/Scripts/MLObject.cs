@@ -9,6 +9,29 @@ namespace ITMO.Scripts
     public class MLObject : MonoBehaviour
     {
         public static string CurrentEmotion = string.Empty;
+        private Logger _logger;
+        private string _prevEmotion = string.Empty;
+        private void Awake()
+        {
+            if (!SRanipal_Eye_Framework.Instance.EnableEye) enabled = false;
+            Server.SendEvent.AddListener(EventHandler);
+            Server.ConnectionEvent.AddListener(ConnectionHandler);
+        }
+
+        private void ConnectionHandler()
+        {
+            _logger = new Logger("_emotions");
+            _logger.AddInfo("timestamp|emotion");
+        }
+
+        private void EventHandler()
+        {
+            if (!Server.ServerConnected) return;
+
+            _logger.AddInfo(
+                $"Level - {Level.CurrentLevelName};");
+            _logger.WriteInfo();
+        }
 
         private void FixedUpdate()
         {
@@ -21,6 +44,10 @@ namespace ITMO.Scripts
             
             var data = ModelInput.Transform(EyeTracker.Shapes, FaceTracker.Shapes);
             CurrentEmotion = ML.ML.Predict(data).PredictedLabel;
+            if (_prevEmotion.Equals(CurrentEmotion)) return;
+            _prevEmotion = CurrentEmotion;
+            _logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{CurrentEmotion}");
+            _logger.WriteInfo();
         }
     }
 }
