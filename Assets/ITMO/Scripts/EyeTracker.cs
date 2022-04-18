@@ -15,7 +15,6 @@ namespace ITMO.Scripts
 
         private void Awake()
         {
-            if (!SRanipal_Eye_Framework.Instance.EnableEye) enabled = false;
             Server.SendEvent.AddListener(EventHandler);
             Server.ConnectionEvent.AddListener(ConnectionHandler);
         }

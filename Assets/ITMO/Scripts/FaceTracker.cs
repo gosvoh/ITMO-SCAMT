@@ -15,7 +15,6 @@ namespace ITMO.Scripts
 
         private void Awake()
         {
-            if (!SRanipal_Lip_Framework.Instance.EnableLip) enabled = false;
             Server.SendEvent.AddListener(EventHandler);
             Server.ConnectionEvent.AddListener(ConnectionHandler);
         }
@@ -52,6 +51,7 @@ namespace ITMO.Scripts
             foreach (var value in Shapes.Values) sb.Append(value).Append('|');
             sb.Remove(sb.Length - 1, 1);
             _logger.AddInfo(sb.ToString());
+            sb.Clear();
             _logger.WriteInfo();
         }
     }
