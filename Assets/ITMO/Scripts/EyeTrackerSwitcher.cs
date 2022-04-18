@@ -1,5 +1,4 @@
-﻿using System;
-using Tobii.XR;
+﻿using Tobii.XR;
 using UnityEngine;
 using ViveSR.anipal.Eye;
 
@@ -7,8 +6,14 @@ namespace ITMO.Scripts
 {
     public class EyeTrackerSwitcher : MonoBehaviour
     {
-        public static bool TobiiEnabled = false;
-        private bool _tobiiEnabled = false;
+        public static bool TobiiEnabled;
+        private bool _tobiiEnabled;
+
+        private void Awake()
+        {
+            TobiiEnabled = bool.Parse(PlayerPrefs.GetString("TobiiEnabled", "false"));
+            _tobiiEnabled = TobiiEnabled;
+        }
 
         private void FixedUpdate()
         {

@@ -20,17 +20,14 @@ namespace ITMO.Scripts
             fileName = sb + ".csv";
         }
 
-        public void AddInfo(string infoToLog)
-        {
-            var currentTime = DateTime.Now.ToString("HH:mm:ss.fff");
-            // list.Add("[" + currentTime + "]: " + infoToLog);
-            list.Add(infoToLog);
-        }
+        public void AddInfo(string infoToLog) => list.Add(infoToLog);
 
         public void WriteInfo()
         {
             File.AppendAllLines(fileName, list);
             list.Clear();
         }
+
+        
     }
 }

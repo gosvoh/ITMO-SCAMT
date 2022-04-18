@@ -6,8 +6,9 @@ namespace ITMO.Scripts
 {
     public class App : MonoBehaviour
     {
-        [SerializeField] private GameObject taskPanel;
         [SerializeField] private Server server;
+
+        private void Awake() => server = GetComponent<Server>();
 
         public void Quit() => GetComponent<NarupaXRPrototype>().Quit();
 
@@ -16,7 +17,6 @@ namespace ITMO.Scripts
             server.Disconnect();
             Level.CurrentLevelNode = null;
             Level.CurrentLevelName = null;
-            taskPanel.SetActive(false);
         }
 
         private void OnApplicationQuit() => Quit();

@@ -81,7 +81,7 @@ namespace ITMO.Scripts
                             break;
                         case "txt":
                             string line;
-                            if ((line = File.ReadAllLines(s)[0]).Length > 0) /*_tasks.Add(fn[0], line);*/
+                            if ((line = File.ReadAllLines(s)[0]).Length > 0)
                                 _allTasks[fn[0]] = line;
                             break;
                     }

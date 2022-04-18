@@ -14,7 +14,7 @@ namespace ITMO.Scripts
     public class Server : MonoBehaviour
     {
         public static readonly UnityEvent SendEvent = new UnityEvent();
-        public static readonly UnityEvent ConnectEvent = new UnityEvent();
+        public static readonly UnityEvent ConnectionEvent = new UnityEvent();
 
         [SerializeField] private NarupaImdSimulation simulation;
 
@@ -99,10 +99,10 @@ namespace ITMO.Scripts
             }
 
             if (!simulation.gameObject.activeSelf) throw new ServerException("Cannot connect to Narupa server");
+            
+            ConnectionEvent.Invoke();
 
             ServerConnected = true;
-            ConnectEvent.Invoke();
-            EyeInteraction.EyeGazeChangedCounter = 0;
             Reference.Stopwatch.Restart();
         }
 

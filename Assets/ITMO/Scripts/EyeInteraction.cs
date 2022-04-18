@@ -14,65 +14,64 @@ namespace ITMO.Scripts
 
         public static Logger Logger;
         public static int EyeGazeChangedCounter;
-        public static LayerMask PrefabLayer;
+
         public static int LastID = -10;
-        
         private static readonly List<GameObject> Spheres = new List<GameObject>();
 
-        // private readonly GazeIndex[] gazePriority = { GazeIndex.COMBINE, GazeIndex.LEFT, GazeIndex.RIGHT };
-        private GameObject parent;
-        private int counter = -1;
-        private bool logHeaderSet;
+        private GameObject _parent;
+        private int _counter = -1;
 
         private void Awake()
         {
-            PrefabLayer = LayerMask.NameToLayer("GazeCollider");
-            Server.SendEvent.AddListener(SendEventHandler);
-            Server.ConnectEvent.AddListener(ConnectEventHandler);
             SetWalls();
+            Server.SendEvent.AddListener(EventHandler);
+            Server.ConnectionEvent.AddListener(ConnectionHandler);
         }
 
-        private static void SendEventHandler()
+        private void ConnectionHandler()
         {
-            if (Logger == null) return;
+            Logger = new Logger();
+            Logger.AddInfo("timestamp|position|ID");
+            EyeGazeChangedCounter = 0;
+        }
+
+        private void EventHandler()
+        {
+            if (!Server.ServerConnected) return;
+            
             Logger.AddInfo(
                 $"Level - {Level.CurrentLevelName}; Time spent in seconds - {Reference.Stopwatch.Elapsed.TotalSeconds}; Gaze changed - {EyeGazeChangedCounter}");
             Logger.WriteInfo();
             EyeGazeChangedCounter = 0;
         }
 
-        private static void ConnectEventHandler()
-        {
-            Logger = new Logger();
-            Logger.AddInfo("API|timestamp|position|ID");
-        }
-
-        // private void Update()
-        // {
-        //     if (!Server.ServerConnected || Logger == null) return;
-        //     if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING) return;
-        //
-        //     foreach (var index in gazePriority)
-        //     {
-        //         var eyeFocus = SRanipal_Eye_v2.Focus(index, out _, out var focusInfo, 0,
-        //             float.MaxValue, 1 << PrefabLayer);
-        //         if (!eyeFocus) continue;
-        //         var info = focusInfo.transform.GetComponent<Info>();
-        //         if (info == null) break;
-        //         if (info.Index == LastID) break;
-        //         LastID = info.Index;
-        //         EyeGazeChangedCounter++;
-        //         Logger.AddInfo($"SRanipal|{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
-        //         Logger.WriteInfo();
-        //     }
-        // }
+        private void OnDisable() => Destroy(_parent);
 
         private void FixedUpdate()
         {
+            if (!Server.ServerConnected || Logger == null) return;
+            if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING) return;
+            if (_counter++ % 10 != 0) return;
+            
+            UpdateScene();
+
+            var layer = atomPrefab.layer;
+            var eyeFocus = SRanipal_Eye_v2.Focus(GazeIndex.COMBINE, out _, out var focusInfo, 0,
+                float.MaxValue, 1 << layer);
+            if (!eyeFocus) return;
+            var info = focusInfo.transform.GetComponent<Info>();
+            if (info == null || info.Index == LastID) return;
+            LastID = info.Index;
+            EyeGazeChangedCounter++;
+            Logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
+            Logger.WriteInfo();
+        }
+
+        private void UpdateScene()
+        {
             var frame = frameSource.CurrentFrame;
-            if (counter++ % 10 != 0) return;
             if (frame?.ParticleCount == 0 || Spheres.Count == frame?.ParticleCount) return;
-            Destroy(parent);
+            Destroy(_parent);
             Spheres.Clear();
             CreateSphere(frame);
         }
@@ -84,7 +83,7 @@ namespace ITMO.Scripts
             simSpace.transform.localPosition = Vector3.zero;
             simSpace.transform.rotation = new Quaternion();
 
-            parent = new GameObject("ParentEyeInteraction")
+            _parent = new GameObject("ParentEyeInteraction")
             {
                 transform =
                 {
@@ -100,7 +99,7 @@ namespace ITMO.Scripts
             for (int i = 0, partCount = frame.ParticleCount; i < partCount; ++i)
             {
                 var atom = Instantiate(atomPrefab, particlePositions[i], Quaternion.identity);
-                atom.transform.SetParent(parent.transform, false);
+                atom.transform.SetParent(_parent.transform, false);
                 var info = atom.GetComponent<Info>();
                 info.Index = particles[i].Index;
                 info.Obj = atom;
@@ -118,7 +117,5 @@ namespace ITMO.Scripts
                 wallInfo.Obj = wall;
             }
         }
-
-        private void OnDisable() => Destroy(parent);
     }
 }

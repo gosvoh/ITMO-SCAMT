@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using NarupaIMD.UI;
 using UnityEngine;
 
@@ -14,9 +13,6 @@ namespace ITMO.Scripts
         private const string ChooseMsg = "Choose level";
         private const string EmptyMsg = "Empty list of levels";
 
-        private Dictionary<string, bool> _answers;
-        private bool _answer;
-        
         private string _levelToShow = ChooseMsg;
         private string[] _list;
         private Vector2 _scrollViewVector = Vector2.zero;
@@ -26,18 +22,6 @@ namespace ITMO.Scripts
         {
             Level.Initialize();
             _list = Level.LevelNamesList.ToArray();
-            Server.ConnectEvent.AddListener(ConnectEventHandler);
-            Server.SendEvent.AddListener(SendEventHandler);
-        }
-
-        private void SendEventHandler()
-        {
-            _answer = false;
-        }
-
-        private void ConnectEventHandler()
-        {
-            _answers = new Dictionary<string, bool>();
         }
 
         private void OnGUI()
@@ -95,8 +79,6 @@ namespace ITMO.Scripts
                     if (Level.GetLevelTask(Level.CurrentLevelName, out var task)) GUILayout.Box(task);
                 }
 
-                // _answer = GUILayout.Toggle(_answer, "Ответ верный?");
-
                 if (Level.CurrentLevelName != null)
                 {
                     if (GUILayout.Button(Level.CurrentLevelNode?.Previous == null
@@ -116,7 +98,6 @@ namespace ITMO.Scripts
                             ? "Disconnect"
                             : "Next to " + Level.CurrentLevelNode.Next.Value))
                     {
-                        if (Level.CurrentLevelName != null) _answers[Level.CurrentLevelName] = _answer;
                         if (Level.CurrentLevelNode?.Next != null)
                         {
                             Level.CurrentLevelNode = Level.CurrentLevelNode.Next;
@@ -137,32 +118,9 @@ namespace ITMO.Scripts
 
         private void DisconnectAndReturn()
         {
-            // Debug.Log(_answers);
             _levelToShow = ChooseMsg;
             manager.GotoScene(scene);
             app.GetComponent<App>().Disconnect();
         }
-
-        // private void GetAnswers()
-        // {
-        //     GUILayout.BeginArea(new Rect(16, 16, 192, 512));
-        //
-        //     var rect = new Rect(20, 20, 100, 100);
-        //     rect = GUI.Window(0, rect, func, "Ответы");
-        //
-        //     GUILayout.EndArea();
-        // }
-        //
-        // private void func(int id)
-        // {
-        //     GUILayout.TextArea("wft");
-        //     GUILayout.TextArea("wft");
-        //     GUILayout.TextArea("wft");
-        //     if (GUILayout.Button("Ок"))
-        //     {
-        //         manager.GotoScene(scene);
-        //         app.GetComponent<App>().Disconnect();
-        //     }
-        // }
     }
 }
