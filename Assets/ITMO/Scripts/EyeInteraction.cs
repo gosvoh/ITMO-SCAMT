@@ -51,25 +51,11 @@ namespace ITMO.Scripts
         {
             if (!Server.ServerConnected || _logger == null) return;
             if (SRanipal_Eye_Framework.Status != SRanipal_Eye_Framework.FrameworkStatus.WORKING) return;
-            if (_counter++ % 10 != 0) return;
+            
+            if (_counter++ % Reference.TrackersTick != 0) return;
             
             UpdateScene();
-            
-            // foreach (var index in _gazePriority)
-            // {
-            //     var layer = atomPrefab.layer;
-            //     var eyeFocus = SRanipal_Eye_v2.Focus(index, out _, out var focusInfo, 0,
-            //         float.MaxValue, 1 << layer);
-            //     if (!eyeFocus) continue;
-            //     var info = focusInfo.transform.GetComponent<Info>();
-            //     if (info == null) break;
-            //     if (info.Index == _id) break;
-            //     _id = info.Index;
-            //     EyeGazeChangedCounter++;
-            //     _logger.AddInfo($"{DateTime.Now:HH:mm:ss.fff}|{info.Obj.transform.position}|{info.Index}");
-            //     _logger.WriteInfo();
-            // }
-            
+
             var layer = atomPrefab.layer;
             var eyeFocus = SRanipal_Eye_v2.Focus(GazeIndex.COMBINE, out _, out var focusInfo, 0,
                 float.MaxValue, 1 << layer);

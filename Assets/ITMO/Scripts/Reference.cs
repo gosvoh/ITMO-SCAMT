@@ -12,6 +12,7 @@ namespace ITMO.Scripts
     {
         public static int ID = -1;
         public static Stopwatch Stopwatch = new Stopwatch();
+        public static int TrackersTick = 10;
     }
 
     public static class Extentions

@@ -43,8 +43,9 @@ namespace ITMO.Scripts
             if (!Server.ServerConnected || _logger == null) return;
             if (SRanipal_Lip_Framework.Status != SRanipal_Lip_Framework.FrameworkStatus.WORKING) return;
 
+            if (_counter++ % Reference.TrackersTick != 0) return;
+            
             SRanipal_Lip_v2.GetLipWeightings(out Shapes);
-            if (_counter++ % 10 != 0) return;
 
             var sb = new StringBuilder();
             sb.Append(DateTime.Now.ToString("HH:mm:ss.fff")).Append("|");

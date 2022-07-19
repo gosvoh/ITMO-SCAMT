@@ -15,22 +15,17 @@ namespace ITMO.Scripts
             PlayerPrefs.SetInt("Tip1TimeSeconds", TaskPanel.Tip1TimeSeconds);
             PlayerPrefs.SetInt("Tip2TimeSeconds", TaskPanel.Tip2TimeSeconds);
             PlayerPrefs.SetInt("Tip3TimeSeconds", TaskPanel.Tip3TimeSeconds);
+            PlayerPrefs.SetInt("Reference.TrackersTick", Reference.TrackersTick);
             PlayerPrefs.Save();
         }
-        
+
         private static void LoadSettings()
         {
-            if (PlayerPrefs.HasKey("TipGazeCounter"))
-                TaskPanel.TipGazeCounter = PlayerPrefs.GetInt("TipGazeCounter");
-            
-            if (PlayerPrefs.HasKey("Tip1TimeSeconds"))
-                TaskPanel.Tip1TimeSeconds = PlayerPrefs.GetInt("Tip1TimeSeconds");
-            
-            if (PlayerPrefs.HasKey("Tip2TimeSeconds"))
-                TaskPanel.Tip2TimeSeconds = PlayerPrefs.GetInt("Tip2TimeSeconds");
-            
-            if (PlayerPrefs.HasKey("Tip3TimeSeconds"))
-                TaskPanel.Tip3TimeSeconds = PlayerPrefs.GetInt("Tip3TimeSeconds");
+            TaskPanel.TipGazeCounter = PlayerPrefs.GetInt("TipGazeCounter", 250);
+            TaskPanel.Tip1TimeSeconds = PlayerPrefs.GetInt("Tip1TimeSeconds", 30);
+            TaskPanel.Tip2TimeSeconds = PlayerPrefs.GetInt("Tip2TimeSeconds", 50);
+            TaskPanel.Tip3TimeSeconds = PlayerPrefs.GetInt("Tip3TimeSeconds", 70);
+            Reference.TrackersTick = PlayerPrefs.GetInt("Reference.TrackersTick", 10);
         }
     }
 }

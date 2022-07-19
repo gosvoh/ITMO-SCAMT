@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using NarupaIMD.UI;
 using UnityEngine;
@@ -81,7 +82,7 @@ namespace ITMO.Scripts
 
                     GUILayout.EndScrollView();
                 }
-                
+
                 GUILayout.Box("Настройки");
                 GUILayout.Box("Gazes to next tip: " + TaskPanel.TipGazeCounter);
                 TaskPanel.TipGazeCounter = ((int) Math.Round(GUILayout.HorizontalSlider(
@@ -142,13 +143,17 @@ namespace ITMO.Scripts
                 }
 
                 if (GUILayout.Button("Disconnect")) DisconnectAndReturn();
-                
+
                 GUILayout.Box(MLObject.CurrentEmotion);
                 GUILayout.Box($"Частота: {EyeInteraction.EyeGazeChangedCounter}");
                 GUILayout.Box($"Время: {Reference.Stopwatch.Elapsed.TotalSeconds:000}с");
                 GUILayout.Box("Current tip lvl: " + TaskPanel.TipLvl);
                 if (GUILayout.Button("Next tip")) TaskPanel.NextTip();
             }
+
+            GUILayout.Box(string.Format(CultureInfo.InvariantCulture, "Register trackers every {0:0.00}s",
+                Reference.TrackersTick * Time.fixedDeltaTime));
+            Reference.TrackersTick = (int) GUILayout.HorizontalSlider(Reference.TrackersTick, 1, 50);
 
             GUILayout.EndArea();
         }
